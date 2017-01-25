@@ -19,22 +19,36 @@ In the meantime you can go ahead and create the 2 swnode's below.
 
 
 ```bash
+. ../docker1.13.0.rc
+```
+
+Let's cleanup any remaining machines, if they exist already ..
+
+
+```bash
+docker-machine rm -f swmaster swnode1 swnode2
+```
+
+    About to remove swmaster, swnode1, swnode2
+    Successfully removed swmaster
+    Successfully removed swnode1
+    Successfully removed swnode2
+
+
+Now let's create our new nodes
+
+
+```bash
 docker-machine create -d virtualbox swmaster
 ```
 
     Running pre-create checks...
-    (swmaster) No default Boot2Docker ISO found locally, downloading the latest release...
-    (swmaster) Latest release for github.com/boot2docker/boot2docker is v1.12.3
-    (swmaster) Downloading /home/group20/.docker/machine/cache/boot2docker.iso from https://github.com/boot2docker/boot2docker/releases/download/v1.12.3/boot2docker.iso...
-    (swmaster) 0%....10%....20%....30%....40%....50%....60%....70%....80%....90%....100%
     Creating machine...
-    (swmaster) Copying /home/group20/.docker/machine/cache/boot2docker.iso to /home/group20/.docker/machine/machines/swmaster/boot2docker.iso...
+    (swmaster) Copying /home/mjb/.docker/machine/cache/boot2docker.iso to /home/mjb/.docker/machine/machines/swmaster/boot2docker.iso...
     (swmaster) Creating VirtualBox VM...
     (swmaster) Creating SSH key...
     (swmaster) Starting the VM...
     (swmaster) Check network to re-create if needed...
-    (swmaster) Waiting for an IP...
-    (swmaster) The host-only adapter is corrupted. Let's stop the VM, fix the host-only adapter and restart the VM
     (swmaster) Waiting for an IP...
     Waiting for machine to be running, this may take a few minutes...
     Detecting operating system of created instance...
@@ -55,7 +69,7 @@ docker-machine ls
 ```
 
     NAME       ACTIVE   DRIVER       STATE     URL                         SWARM   DOCKER    ERRORS
-    swmaster   -        virtualbox   Running   tcp://192.168.99.105:2376           v1.12.3   
+    swmaster   -        virtualbox   Running   tcp://192.168.99.114:2376           v1.13.0   
 
 
 
@@ -65,7 +79,7 @@ docker-machine create -d virtualbox swnode1
 
     Running pre-create checks...
     Creating machine...
-    (swnode1) Copying /home/group20/.docker/machine/cache/boot2docker.iso to /home/group20/.docker/machine/machines/swnode1/boot2docker.iso...
+    (swnode1) Copying /home/mjb/.docker/machine/cache/boot2docker.iso to /home/mjb/.docker/machine/machines/swnode1/boot2docker.iso...
     (swnode1) Creating VirtualBox VM...
     (swnode1) Creating SSH key...
     (swnode1) Starting the VM...
@@ -90,8 +104,8 @@ docker-machine ls
 ```
 
     NAME       ACTIVE   DRIVER       STATE     URL                         SWARM   DOCKER    ERRORS
-    swmaster   -        virtualbox   Running   tcp://192.168.99.105:2376           v1.12.3   
-    swnode1    -        virtualbox   Running   tcp://192.168.99.106:2376           v1.12.3   
+    swmaster   -        virtualbox   Running   tcp://192.168.99.114:2376           v1.13.0   
+    swnode1    -        virtualbox   Running   tcp://192.168.99.115:2376           v1.13.0   
 
 
 
@@ -101,7 +115,7 @@ time docker-machine create -d virtualbox swnode2
 
     Running pre-create checks...
     Creating machine...
-    (swnode2) Copying /home/group20/.docker/machine/cache/boot2docker.iso to /home/group20/.docker/machine/machines/swnode2/boot2docker.iso...
+    (swnode2) Copying /home/mjb/.docker/machine/cache/boot2docker.iso to /home/mjb/.docker/machine/machines/swnode2/boot2docker.iso...
     (swnode2) Creating VirtualBox VM...
     (swnode2) Creating SSH key...
     (swnode2) Starting the VM...
@@ -119,9 +133,9 @@ time docker-machine create -d virtualbox swnode2
     Docker is up and running!
     To see how to connect your Docker Client to the Docker Engine running on this virtual machine, run: docker-machine env swnode2
     
-    real	1m0.014s
-    user	0m0.492s
-    sys	0m0.076s
+    real	1m0.897s
+    user	0m0.670s
+    sys	0m0.053s
 
 
 
@@ -130,18 +144,17 @@ docker-machine ls
 ```
 
     NAME       ACTIVE   DRIVER       STATE     URL                         SWARM   DOCKER    ERRORS
-    swmaster   -        virtualbox   Running   tcp://192.168.99.105:2376           v1.12.3   
-    swnode1    -        virtualbox   Running   tcp://192.168.99.106:2376           v1.12.3   
-    swnode2    -        virtualbox   Running   tcp://192.168.99.107:2376           v1.12.3   
+    swmaster   -        virtualbox   Running   tcp://192.168.99.114:2376           v1.13.0   
+    swnode1    -        virtualbox   Running   tcp://192.168.99.115:2376           v1.13.0   
+    swnode2    -        virtualbox   Running   tcp://192.168.99.116:2376           v1.13.0   
 
 
 # swarm init
 
-Now that we have 3 nodes available, we will initialize our Swarm Cluster with 1 master node
+Now that we have 3 nodes available, we will initialize our Swarm Cluster with 1 master node.
 
-First let's identify the ip address of that node.
-
-We can see this through config or ip commands of docker-machine as shown below.
+### Directing the docker client to a particular nodes' docker daemon
+**NOTE**: See that we precede all docker commands with $(docker-machine config NODE) where node is the name of the node to which we want our docker client to connect to.  This command returns the parameters to direct our client to the appropriate node.  Run alone this produces:
 
 
 ```bash
@@ -149,18 +162,40 @@ docker-machine config swmaster
 ```
 
     --tlsverify
-    --tlscacert="/home/group20/.docker/machine/certs/ca.pem"
-    --tlscert="/home/group20/.docker/machine/certs/cert.pem"
-    --tlskey="/home/group20/.docker/machine/certs/key.pem"
-    -H=tcp://192.168.99.105:2376
+    --tlscacert="/home/mjb/.docker/machine/certs/ca.pem"
+    --tlscert="/home/mjb/.docker/machine/certs/cert.pem"
+    --tlskey="/home/mjb/.docker/machine/certs/key.pem"
+    -H=tcp://192.168.99.114:2376
 
+
+Including these parameters on the docker command line will connect the client to the docker daemon running on node '*swmaster*'.
+
+### Networks before creation of swarm cluster
+Before going further let's look at the networks on your machine.
+
+Later, we'll see how a new network is created once the swarm cluster has been created.
+
+
+```bash
+docker $(docker-machine config swmaster) network ls
+```
+
+    NETWORK ID          NAME                DRIVER              SCOPE
+    c7c01d8b70a3        bridge              bridge              local
+    e16375837cfa        host                host                local
+    f22f49175ae7        none                null                local
+
+
+Now let's identify the ip address of our master node.
+
+We can see this through config or ip commands of docker-machine as shown below.
 
 
 ```bash
 docker-machine ip swmaster
 ```
 
-    192.168.99.105
+    192.168.99.114
 
 
 We could then provide the above ip address as parameter to --advertise-addr when initializing the swarm.
@@ -177,13 +212,13 @@ You should see output similar to the below:
 docker $(docker-machine config swmaster) swarm init --advertise-addr $(docker-machine ip swmaster)
 ```
 
-    Swarm initialized: current node (983fp9611vely7wgd593pyup6) is now a manager.
+    Swarm initialized: current node (r243hhgco052fasc7pen4v0ay) is now a manager.
     
     To add a worker to this swarm, run the following command:
     
         docker swarm join \
-        --token SWMTKN-1-53u20lpb0qanlwwxb59iwirt6w1qw0qi2t1p7c1gk0p4c44o0m-dsggkdumqs5536he24tn7gave \
-        192.168.99.105:2377
+        --token SWMTKN-1-41zu4a0mditg8v6fj5s5l0s596c1l34q5ifun0q3fotel5jbmr-7km3aswq6nx3coc3vq317wjak \
+        192.168.99.114:2377
     
     To add a manager to this swarm, run 'docker swarm join-token manager' and follow the instructions.
     
@@ -201,7 +236,7 @@ docker $(docker-machine config swmaster) info
      Paused: 0
      Stopped: 0
     Images: 0
-    Server Version: 1.12.3
+    Server Version: 1.13.0
     Storage Driver: aufs
      Root Dir: /mnt/sda1/var/lib/docker/aufs
      Backing Filesystem: extfs
@@ -209,49 +244,76 @@ docker $(docker-machine config swmaster) info
      Dirperm1 Supported: true
     Logging Driver: json-file
     Cgroup Driver: cgroupfs
-    Plugins:
+    Plugins: 
      Volume: local
-     Network: null bridge overlay host
+     Network: bridge host macvlan null overlay
     Swarm: active
-     NodeID: 983fp9611vely7wgd593pyup6
+     NodeID: r243hhgco052fasc7pen4v0ay
      Is Manager: true
-     ClusterID: d3navkk4xgotvnxg9to70xb1j
+     ClusterID: vmgj75qogu29e4xnfnno9n2n0
      Managers: 1
      Nodes: 1
      Orchestration:
       Task History Retention Limit: 5
      Raft:
       Snapshot Interval: 10000
+      Number of Old Snapshots to Retain: 0
       Heartbeat Tick: 1
       Election Tick: 3
      Dispatcher:
       Heartbeat Period: 5 seconds
      CA Configuration:
       Expiry Duration: 3 months
-     Node Address: 192.168.99.105
+     Node Address: 192.168.99.114
+     Manager Addresses:
+      192.168.99.114:2377
     Runtimes: runc
     Default Runtime: runc
-    Security Options: seccomp
-    Kernel Version: 4.4.27-boot2docker
-    Operating System: Boot2Docker 1.12.3 (TCL 7.2); HEAD : 7fc7575 - Thu Oct 27 17:23:17 UTC 2016
+    Init Binary: docker-init
+    containerd version: 03e5862ec0d8d3b3f750e19fca3ee367e13c090e
+    runc version: 2f7393a47307a16f8cee44a37b262e8b81021e3e
+    init version: 949e6fa
+    Security Options:
+     seccomp
+      Profile: default
+    Kernel Version: 4.4.43-boot2docker
+    Operating System: Boot2Docker 1.13.0 (TCL 7.2); HEAD : 5b8d9cb - Wed Jan 18 18:50:40 UTC 2017
     OSType: linux
     Architecture: x86_64
     CPUs: 1
     Total Memory: 995.8 MiB
     Name: swmaster
-    ID: WH2I:PBRM:OD3D:4HTC:Y6O2:V7SL:VIAH:SQEN:A6T3:RN6M:HG3C:XF7R
+    ID: A7MI:CIPN:M53F:W6UZ:FJKH:4P6H:SE2I:PSOE:SWOZ:I2EO:XGAX:UHW4
     Docker Root Dir: /mnt/sda1/var/lib/docker
     Debug Mode (client): false
     Debug Mode (server): true
-     File Descriptors: 31
-     Goroutines: 117
-     System Time: 2016-10-31T10:10:55.659047537Z
+     File Descriptors: 32
+     Goroutines: 124
+     System Time: 2017-01-25T20:22:05.60989371Z
      EventsListeners: 0
+    Username: mjbright
     Registry: https://index.docker.io/v1/
     Labels:
      provider=virtualbox
+    Experimental: false
     Insecure Registries:
      127.0.0.0/8
+    Live Restore Enabled: false
+
+
+If we look at the networks we should now see new networks such as '*ingress*' an overlay network and docker_gwbridge for the swarm cluster.
+
+
+```bash
+docker $(docker-machine config swmaster) network ls
+```
+
+    NETWORK ID          NAME                DRIVER              SCOPE
+    c7c01d8b70a3        bridge              bridge              local
+    32597262f84d        docker_gwbridge     bridge              local
+    e16375837cfa        host                host                local
+    cysk2wkjtjca        ingress             overlay             swarm
+    f22f49175ae7        none                null                local
 
 
 # swarm join
@@ -261,19 +323,16 @@ Now we wish to join Master and Worker nodes to our swarm cluster, to do this we 
 Let's save that token to an environment variable as follows:
 
 
-
 ```bash
 token=$(docker $(docker-machine config swmaster) swarm join-token worker -q)
 ```
-
-    
 
 
 ```bash
 echo $token
 ```
 
-    SWMTKN-1-53u20lpb0qanlwwxb59iwirt6w1qw0qi2t1p7c1gk0p4c44o0m-dsggkdumqs5536he24tn7gave
+    SWMTKN-1-41zu4a0mditg8v6fj5s5l0s596c1l34q5ifun0q3fotel5jbmr-7km3aswq6nx3coc3vq317wjak
 
 
 Now we can use this token to join nodes as a worker to this cluster
@@ -310,7 +369,7 @@ First we check for any running services - there should be none in our newly init
 docker $(docker-machine config swmaster) service ls
 ```
 
-    ID  NAME  REPLICAS  IMAGE  COMMAND
+    ID  NAME  MODE  REPLICAS  IMAGE
 
 
 Now we will create a new service based on the docker image mariolet/docker-demo
@@ -323,7 +382,7 @@ We will expose this service on port 8080
 docker $(docker-machine config swmaster) service create --replicas 1 --name docker-demo -p 8080:8080 mariolet/docker-demo:20
 ```
 
-    0iy9fudrubw5q4987hznce3zu
+    z6yi30k1yqedhutcspzxisbkt
 
 
 Now we list services again and we should see our newly added docker-demo service
@@ -333,8 +392,8 @@ Now we list services again and we should see our newly added docker-demo service
 docker $(docker-machine config swmaster) service ls
 ```
 
-    ID            NAME         REPLICAS  IMAGE                    COMMAND
-    0iy9fudrubw5  docker-demo  0/1       mariolet/docker-demo:20  
+    ID            NAME         MODE        REPLICAS  IMAGE
+    z6yi30k1yqed  docker-demo  replicated  0/1       mariolet/docker-demo:20
 
 
 ... and we can look at the service as seen by the cluster:
@@ -344,8 +403,8 @@ docker $(docker-machine config swmaster) service ls
 docker $(docker-machine config swmaster) service ps docker-demo
 ```
 
-    ID                         NAME           IMAGE                    NODE      DESIRED STATE  CURRENT STATE          ERROR
-    bis9a6yzjtxipx0kkeb4e0b8w  docker-demo.1  mariolet/docker-demo:20  swmaster  Running        Running 5 seconds ago  
+    ID            NAME           IMAGE                    NODE     DESIRED STATE  CURRENT STATE            ERROR  PORTS
+    sac0v5i5beuj  docker-demo.1  mariolet/docker-demo:20  swnode2  Running        Preparing 4 seconds ago         
 
 
 ... and we can look at the service on the individual cluster nodes.
@@ -357,8 +416,7 @@ Of course as we set replicas to 1 there is only 1 replica of the service for the
 docker $(docker-machine config swmaster) ps
 ```
 
-    CONTAINER ID        IMAGE                     COMMAND                  CREATED             STATUS              PORTS               NAMES
-    337010515c59        mariolet/docker-demo:20   "/bin/docker-demo -li"   3 minutes ago       Up 3 minutes        8080/tcp            docker-demo.1.bis9a6yzjtxipx0kkeb4e0b8w
+    CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
 
 
 
@@ -374,7 +432,8 @@ docker $(docker-machine config swnode1) ps
 docker $(docker-machine config swnode2) ps
 ```
 
-    CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+    CONTAINER ID        IMAGE                                                                                          COMMAND                  CREATED             STATUS              PORTS               NAMES
+    ac7f4401b6fc        mariolet/docker-demo@sha256:4721f179882cd7a84c42893046be38da94b59dc4b8a3dae56277d7b7b04a96cb   "/bin/docker-demo ..."   3 seconds ago       Up 2 seconds        8080/tcp            docker-demo.1.sac0v5i5beujxbydzq6dsix35
 
 
 # Accessing the service
@@ -388,7 +447,7 @@ We can obtain the ip address of the swarm master node as follows.
 docker-machine ip swmaster
 ```
 
-    192.168.99.105
+    192.168.99.114
 
 
 So from a terminal on your laptop open the ssh tunnel to **YOUR USER@YOUR SERVER**
@@ -396,7 +455,7 @@ So from a terminal on your laptop open the ssh tunnel to **YOUR USER@YOUR SERVER
 MYSERVER=10.3.222.32
 MYUSER=group20
 
-e.g. ssh group20@10.3.222.32 -L 8080:192.168.99.105:8080 -Nv
+e.g. ssh group20@10.3.222.32 -L 8080:192.168.99.114:8080 -Nv
 
 
 ```bash
@@ -404,6 +463,14 @@ MYSERVER=10.3.222.32
 MYUSER=group20
 ssh ${MYUSER}@${MYSERVER} -L 8080:$(docker-machine ip swmaster):8080 -Nv
 ```
+
+    OpenSSH_7.2p2, OpenSSL 1.0.2j-fips  26 Sep 2016
+    debug1: Reading configuration data /home/mjb/.ssh/config
+    debug1: Reading configuration data /etc/ssh/ssh_config
+    debug1: /etc/ssh/ssh_config line 58: Applying options for *
+    debug1: Connecting to 10.3.222.32 [10.3.222.32] port 22.
+    
+
 
 Then open your web browser at the page http://localhost:8080 and you should see a lovely blue whale, as below:
 
@@ -423,14 +490,18 @@ docker $(docker-machine config swmaster) service scale docker-demo=3
 
 
 
+
+
 ```bash
 docker $(docker-machine config swmaster) service ps docker-demo
 ```
 
-    ID                         NAME           IMAGE                    NODE      DESIRED STATE  CURRENT STATE          ERROR
-    bis9a6yzjtxipx0kkeb4e0b8w  docker-demo.1  mariolet/docker-demo:20  swmaster  Running        Running 6 minutes ago  
-    buqwkgkessqp87t1hx4h7xafx  docker-demo.2  mariolet/docker-demo:20  swnode1   Running        Running 1 seconds ago  
-    8itya650tbhsax94zbcu8f8x5  docker-demo.3  mariolet/docker-demo:20  swnode2   Running        Running 1 seconds ago  
+    ID            NAME           IMAGE                    NODE      DESIRED STATE  CURRENT STATE                     ERROR  PORTS
+    sac0v5i5beuj  docker-demo.1  mariolet/docker-demo:20  swnode2   Running        Running 51 seconds ago                   
+    bffp3nyo685u  docker-demo.2  mariolet/docker-demo:20  swmaster  Running        Preparing less than a second ago         
+    de9h34g8oipr  docker-demo.3  mariolet/docker-demo:20  swnode1   Running        Preparing less than a second ago         
+
+
 
 
 # rolling-update
@@ -445,10 +516,12 @@ We initially deployed version 20 of the service, now we will upgrade our whole c
 docker $(docker-machine config swmaster) service ps docker-demo
 ```
 
-    ID                         NAME           IMAGE                    NODE      DESIRED STATE  CURRENT STATE           ERROR
-    bis9a6yzjtxipx0kkeb4e0b8w  docker-demo.1  mariolet/docker-demo:20  swmaster  Running        Running 6 minutes ago   
-    buqwkgkessqp87t1hx4h7xafx  docker-demo.2  mariolet/docker-demo:20  swnode1   Running        Running 16 seconds ago  
-    8itya650tbhsax94zbcu8f8x5  docker-demo.3  mariolet/docker-demo:20  swnode2   Running        Running 16 seconds ago  
+    ID            NAME           IMAGE                    NODE      DESIRED STATE  CURRENT STATE               ERROR  PORTS
+    sac0v5i5beuj  docker-demo.1  mariolet/docker-demo:20  swnode2   Running        Running about a minute ago         
+    bffp3nyo685u  docker-demo.2  mariolet/docker-demo:20  swmaster  Running        Running 11 seconds ago             
+    de9h34g8oipr  docker-demo.3  mariolet/docker-demo:20  swnode1   Running        Running 9 seconds ago              
+
+
 
 
 
@@ -460,30 +533,35 @@ docker $(docker-machine config swmaster) service update --image mariolet/docker-
 
 
 
-```bash
-docker $(docker-machine config swmaster) service ps docker-demo
-```
-
-    ID                         NAME               IMAGE                    NODE      DESIRED STATE  CURRENT STATE            ERROR
-    5m8jfezy3zvmfu0ym7z64gkcn  docker-demo.1      mariolet/docker-demo:21  swnode2   Ready          Preparing 1 seconds ago  
-    bis9a6yzjtxipx0kkeb4e0b8w   \_ docker-demo.1  mariolet/docker-demo:20  swmaster  Shutdown       Running 7 minutes ago    
-    buqwkgkessqp87t1hx4h7xafx  docker-demo.2      mariolet/docker-demo:20  swnode1   Running        Running 30 seconds ago   
-    68o013o4n66jeczvf2b009wr4  docker-demo.3      mariolet/docker-demo:21  swnode1   Running        Running 1 seconds ago    
-    8itya650tbhsax94zbcu8f8x5   \_ docker-demo.3  mariolet/docker-demo:20  swnode2   Shutdown       Shutdown 4 seconds ago   
-
 
 
 ```bash
 docker $(docker-machine config swmaster) service ps docker-demo
 ```
 
-    ID                         NAME               IMAGE                    NODE      DESIRED STATE  CURRENT STATE            ERROR
-    5m8jfezy3zvmfu0ym7z64gkcn  docker-demo.1      mariolet/docker-demo:21  swnode2   Running        Running 11 seconds ago   
-    bis9a6yzjtxipx0kkeb4e0b8w   \_ docker-demo.1  mariolet/docker-demo:20  swmaster  Shutdown       Shutdown 12 seconds ago  
-    2x9tfhlyrr8oox89ii62ohb8w  docker-demo.2      mariolet/docker-demo:21  swmaster  Running        Running 7 seconds ago    
-    buqwkgkessqp87t1hx4h7xafx   \_ docker-demo.2  mariolet/docker-demo:20  swnode1   Shutdown       Shutdown 9 seconds ago   
-    68o013o4n66jeczvf2b009wr4  docker-demo.3      mariolet/docker-demo:21  swnode1   Running        Running 13 seconds ago   
-    8itya650tbhsax94zbcu8f8x5   \_ docker-demo.3  mariolet/docker-demo:20  swnode2   Shutdown       Shutdown 16 seconds ago  
+    ID            NAME               IMAGE                    NODE      DESIRED STATE  CURRENT STATE                    ERROR  PORTS
+    sac0v5i5beuj  docker-demo.1      mariolet/docker-demo:20  swnode2   Running        Running about a minute ago              
+    camjztgdrvfw  docker-demo.2      mariolet/docker-demo:21  swmaster  Running        Preparing 1 second ago                  
+    bffp3nyo685u   \_ docker-demo.2  mariolet/docker-demo:20  swmaster  Shutdown       Shutdown less than a second ago         
+    de9h34g8oipr  docker-demo.3      mariolet/docker-demo:20  swnode1   Running        Running 19 seconds ago                  
+
+
+
+
+
+```bash
+docker $(docker-machine config swmaster) service ps docker-demo
+```
+
+    ID            NAME               IMAGE                    NODE      DESIRED STATE  CURRENT STATE            ERROR  PORTS
+    b53mbjpbq8ec  docker-demo.1      mariolet/docker-demo:21  swnode2   Running        Running 1 second ago            
+    sac0v5i5beuj   \_ docker-demo.1  mariolet/docker-demo:20  swnode2   Shutdown       Shutdown 4 seconds ago          
+    camjztgdrvfw  docker-demo.2      mariolet/docker-demo:21  swmaster  Running        Running 9 seconds ago           
+    bffp3nyo685u   \_ docker-demo.2  mariolet/docker-demo:20  swmaster  Shutdown       Shutdown 11 seconds ago         
+    y49fxa2bn10a  docker-demo.3      mariolet/docker-demo:21  swnode1   Running        Running 6 seconds ago           
+    de9h34g8oipr   \_ docker-demo.3  mariolet/docker-demo:20  swnode1   Shutdown       Shutdown 8 seconds ago          
+
+
 
 
 ### Verifying the service has been updated
@@ -507,9 +585,11 @@ docker $(docker-machine config swmaster) node ls
 ```
 
     ID                           HOSTNAME  STATUS  AVAILABILITY  MANAGER STATUS
-    5qolyd9sqwby52luxb1x97zv0    swnode1   Ready   Active        
-    983fp9611vely7wgd593pyup6 *  swmaster  Ready   Active        Leader
-    an3ql7dx7ctif5gxd8rm3gf9h    swnode2   Ready   Active        
+    2acz1rh2cogtd657qro9k71je    swnode1   Ready   Active        
+    jvh0bcaevz9g9cgtm76hkamt0    swnode2   Ready   Active        
+    r243hhgco052fasc7pen4v0ay *  swmaster  Ready   Active        Leader
+
+
 
 
 Let's drain swnode1
@@ -519,13 +599,15 @@ Let's drain swnode1
 docker $(docker-machine config swmaster) service ps docker-demo
 ```
 
-    ID                         NAME               IMAGE                    NODE      DESIRED STATE  CURRENT STATE           ERROR
-    5m8jfezy3zvmfu0ym7z64gkcn  docker-demo.1      mariolet/docker-demo:21  swnode2   Running        Running 3 minutes ago   
-    bis9a6yzjtxipx0kkeb4e0b8w   \_ docker-demo.1  mariolet/docker-demo:20  swmaster  Shutdown       Shutdown 3 minutes ago  
-    2x9tfhlyrr8oox89ii62ohb8w  docker-demo.2      mariolet/docker-demo:21  swmaster  Running        Running 3 minutes ago   
-    buqwkgkessqp87t1hx4h7xafx   \_ docker-demo.2  mariolet/docker-demo:20  swnode1   Shutdown       Shutdown 3 minutes ago  
-    68o013o4n66jeczvf2b009wr4  docker-demo.3      mariolet/docker-demo:21  swnode1   Running        Running 3 minutes ago   
-    8itya650tbhsax94zbcu8f8x5   \_ docker-demo.3  mariolet/docker-demo:20  swnode2   Shutdown       Shutdown 3 minutes ago  
+    ID            NAME               IMAGE                    NODE      DESIRED STATE  CURRENT STATE            ERROR  PORTS
+    b53mbjpbq8ec  docker-demo.1      mariolet/docker-demo:21  swnode2   Running        Running 12 seconds ago          
+    sac0v5i5beuj   \_ docker-demo.1  mariolet/docker-demo:20  swnode2   Shutdown       Shutdown 15 seconds ago         
+    camjztgdrvfw  docker-demo.2      mariolet/docker-demo:21  swmaster  Running        Running 20 seconds ago          
+    bffp3nyo685u   \_ docker-demo.2  mariolet/docker-demo:20  swmaster  Shutdown       Shutdown 22 seconds ago         
+    y49fxa2bn10a  docker-demo.3      mariolet/docker-demo:21  swnode1   Running        Running 16 seconds ago          
+    de9h34g8oipr   \_ docker-demo.3  mariolet/docker-demo:20  swnode1   Shutdown       Shutdown 19 seconds ago         
+
+
 
 
 
@@ -536,6 +618,8 @@ docker $(docker-machine config swmaster) node update --availability drain swnode
     swnode1
 
 
+
+
 and now we see that all services on swnode1 are shutdown
 
 
@@ -543,14 +627,16 @@ and now we see that all services on swnode1 are shutdown
 docker $(docker-machine config swmaster) service ps docker-demo
 ```
 
-    ID                         NAME               IMAGE                    NODE      DESIRED STATE  CURRENT STATE            ERROR
-    5m8jfezy3zvmfu0ym7z64gkcn  docker-demo.1      mariolet/docker-demo:21  swnode2   Running        Running 4 minutes ago    
-    bis9a6yzjtxipx0kkeb4e0b8w   \_ docker-demo.1  mariolet/docker-demo:20  swmaster  Shutdown       Shutdown 4 minutes ago   
-    2x9tfhlyrr8oox89ii62ohb8w  docker-demo.2      mariolet/docker-demo:21  swmaster  Running        Running 4 minutes ago    
-    buqwkgkessqp87t1hx4h7xafx   \_ docker-demo.2  mariolet/docker-demo:20  swnode1   Shutdown       Shutdown 4 minutes ago   
-    63321zmooc33yq4d6l7jpa1m3  docker-demo.3      mariolet/docker-demo:21  swmaster  Running        Running 11 seconds ago   
-    68o013o4n66jeczvf2b009wr4   \_ docker-demo.3  mariolet/docker-demo:21  swnode1   Shutdown       Shutdown 13 seconds ago  
-    8itya650tbhsax94zbcu8f8x5   \_ docker-demo.3  mariolet/docker-demo:20  swnode2   Shutdown       Shutdown 4 minutes ago   
+    ID            NAME               IMAGE                    NODE      DESIRED STATE  CURRENT STATE                    ERROR  PORTS
+    b53mbjpbq8ec  docker-demo.1      mariolet/docker-demo:21  swnode2   Running        Running 18 seconds ago                  
+    sac0v5i5beuj   \_ docker-demo.1  mariolet/docker-demo:20  swnode2   Shutdown       Shutdown 21 seconds ago                 
+    camjztgdrvfw  docker-demo.2      mariolet/docker-demo:21  swmaster  Running        Running 26 seconds ago                  
+    bffp3nyo685u   \_ docker-demo.2  mariolet/docker-demo:20  swmaster  Shutdown       Shutdown 28 seconds ago                 
+    hbk811izheg8  docker-demo.3      mariolet/docker-demo:21  swmaster  Running        Running less than a second ago          
+    y49fxa2bn10a   \_ docker-demo.3  mariolet/docker-demo:21  swnode1   Shutdown       Shutdown less than a second ago         
+    de9h34g8oipr   \_ docker-demo.3  mariolet/docker-demo:20  swnode1   Shutdown       Shutdown 24 seconds ago                 
+
+
 
 
 
@@ -558,14 +644,16 @@ docker $(docker-machine config swmaster) service ps docker-demo
 docker $(docker-machine config swmaster) service ps docker-demo
 ```
 
-    ID                         NAME               IMAGE                    NODE      DESIRED STATE  CURRENT STATE            ERROR
-    5m8jfezy3zvmfu0ym7z64gkcn  docker-demo.1      mariolet/docker-demo:21  swnode2   Running        Running 4 minutes ago    
-    bis9a6yzjtxipx0kkeb4e0b8w   \_ docker-demo.1  mariolet/docker-demo:20  swmaster  Shutdown       Shutdown 4 minutes ago   
-    2x9tfhlyrr8oox89ii62ohb8w  docker-demo.2      mariolet/docker-demo:21  swmaster  Running        Running 4 minutes ago    
-    buqwkgkessqp87t1hx4h7xafx   \_ docker-demo.2  mariolet/docker-demo:20  swnode1   Shutdown       Shutdown 4 minutes ago   
-    63321zmooc33yq4d6l7jpa1m3  docker-demo.3      mariolet/docker-demo:21  swmaster  Running        Running 28 seconds ago   
-    68o013o4n66jeczvf2b009wr4   \_ docker-demo.3  mariolet/docker-demo:21  swnode1   Shutdown       Shutdown 30 seconds ago  
-    8itya650tbhsax94zbcu8f8x5   \_ docker-demo.3  mariolet/docker-demo:20  swnode2   Shutdown       Shutdown 4 minutes ago   
+    ID            NAME               IMAGE                    NODE      DESIRED STATE  CURRENT STATE            ERROR  PORTS
+    b53mbjpbq8ec  docker-demo.1      mariolet/docker-demo:21  swnode2   Running        Running 20 seconds ago          
+    sac0v5i5beuj   \_ docker-demo.1  mariolet/docker-demo:20  swnode2   Shutdown       Shutdown 23 seconds ago         
+    camjztgdrvfw  docker-demo.2      mariolet/docker-demo:21  swmaster  Running        Running 28 seconds ago          
+    bffp3nyo685u   \_ docker-demo.2  mariolet/docker-demo:20  swmaster  Shutdown       Shutdown 30 seconds ago         
+    hbk811izheg8  docker-demo.3      mariolet/docker-demo:21  swmaster  Running        Running 3 seconds ago           
+    y49fxa2bn10a   \_ docker-demo.3  mariolet/docker-demo:21  swnode1   Shutdown       Shutdown 3 seconds ago          
+    de9h34g8oipr   \_ docker-demo.3  mariolet/docker-demo:20  swnode1   Shutdown       Shutdown 27 seconds ago         
+
+
 
 
 # remove a service
@@ -580,6 +668,8 @@ docker $(docker-machine config swmaster) service rm docker-demo
     docker-demo
 
 
+
+
 We can check that the service is no longer running:
 
 
@@ -591,11 +681,15 @@ docker $(docker-machine config swmaster) service ps docker-demo
 
 
 
+
+
 ```bash
 docker $(docker-machine config swmaster) ps
 ```
 
     CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+
+
 
 
 
