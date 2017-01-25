@@ -38,6 +38,8 @@ In less than 2 hours you won't become an expert but you will get good hands on e
 
 You need a suitable hypervisor (VBox, libvirt).
 
+A recent docker client (>= docker1.12).
+
 - Docker Swarm lab can be run either
   - On your machine using docker-machine
   - On <a href="http://play-with-docker.com/"> play-with-docker.com </a>
