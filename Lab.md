@@ -3,14 +3,15 @@ class: center, middle, inverse
 
 ##Container Orchestration: Which Conductor?
 [.green.bold[The Lab]]
-###ContainerCon Europe, Berlin, Oct 2016
-<h3> <img width=93 height=30 src="images/RedHat_whiteText_logo.svg" /> &nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp; Haikel Guemar, <img src="images/Twitter_Bird.svg" width=24 /> @hguemar </h3>
+###Devconf.cz, Brno, Czech Republic, Jan 2017
 <h3> <img width=120 src="images/Hewlett_Packard_Enterprise_whiteText_logo.svg" /> &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; Mike Bright, <img src="images/Twitter_Bird.svg" width=24 /> @mjbright </h3>
 <h3> <img width=93 height=30 src="images/RedHat_whiteText_logo.svg" /> &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; Mario Loriedo, <img src="images/Twitter_Bird.svg" width=24 /> @mariolet </h3>
+<h4>... and absent friends ...</h4>
+<h4> <img width=93 height=30 src="images/RedHat_whiteText_logo.svg" /> &nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp; Haikel Guemar, <img src="images/Twitter_Bird.svg" width=24 /> @hguemar </h4>
 
 
 ---
-class: center, middle
+class: middle
 .left-column[
 ## Lab
 .footnote[.gray[ @hguemar @mjbright @mariolet ]]
@@ -34,14 +35,26 @@ In less than 2 hours you won't become an expert but you will get good hands on e
 
 .right-column[
 ## Pre-requisites for this lab:
-https://github.com/mjbright/LinuxConEU-ContainerOrchestration/README.md#prereqs
 
-This lab may be run either
-- in HPE infrastructure
-- locally on your own laptop
+You need a suitable hypervisor (VBox, libvirt).
+
+- Docker Swarm lab can be run either
+  - On your machine using docker-machine
+  - On <a href="http://play-with-docker.com/"> play-with-docker.com </a>
+
+- Kubernetes lab can be run
+  - On your machine using minikube
+  - On your machine using Haikel's Vagrant+Ansible scripts
+
+- Apache Mesos can be run
+  - On your machine using docker-machine
+
+... and other options ...
+
 ]
 
 ---
+exclude:true
 .left-column[
 ## Lab
 .footnote[.gray[ @hguemar @mjbright @mariolet ]]
@@ -59,6 +72,7 @@ We will provide connection instructions on the day.
 ]
 
 ---
+exclude:true
 .left-column[
 ## Lab
 .footnote[.gray[ @hguemar @mjbright @mariolet ]]
@@ -77,6 +91,7 @@ To run on your own laptop you will need
 ]
 
 ---
+exclude:true
 .left-column[
 ## Lab
 .footnote[.gray[ @hguemar @mjbright @mariolet ]]
@@ -101,7 +116,7 @@ Vagrant Box (to be provided - details at the above link)
 
 .right-column[
 ## Lab instructions
-https://github.com/mjbright/LinuxConEU-ContainerOrchestration/README.md#lab
+https://github.com/ContainerOrchestration/Labs/blob/master/README.md
 
 - Detailed lab steps will be provided at the above link
 
@@ -117,8 +132,10 @@ class: center, middle, inverse
 # Thank you
 <br/> <br/>
 
+<!--
 <h3> <img width=120 src="images/Hewlett_Packard_Enterprise_whiteText_logo.svg" /> &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; thanks to HPE for lending their infrastructure @HPE </h3>
 <br/> <br/>
+-->
 
 
 .gray[ [Slideshow created using [remark](http://github.com/gnab/remark). ]]
