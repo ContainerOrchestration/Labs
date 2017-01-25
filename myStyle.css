@@ -1,0 +1,36 @@
+
+.magenta { color: magenta; }
+.cyan { color: cyan; }
+.blue { color: blue; }
+.pink { color: pink; }
+.yellow { color: yellow; }
+.gray { color: #444; }
+.lightgray { color: #888; }
+.vlightgray { color: #ccc; }
+
+.strike {color:salmon;text-decoration:line-through}
+.cite {font-size: 0.8em; color:#33AA99;font-style: italic}
+
+/* 2-column layout */
+.left-column  { width: 50%; float: left; }
+.right-column { width: 49%; float: right; padding-top: 0em; margin-top: 0em; text-align: left; }    
+
+/* Usage:
+    .left-column[<img style="width:100%;"  src="mylogo.png">]
+    .right-column[<img style="width:100%;margin-top:-1em;"  src="the_big_picture.png">  This is the big picture! ]
+*/
+        
+
+#slideshow .slide .content h1 {
+  color: #fd5158;
+  text-transform: uppercase;
+  font-weight: normal;
+  font-style: italic;
+  font-size: 1.5em;
+  position: relative;
+  z-index: 1;
+}
+
+
+
+
