@@ -152,6 +152,18 @@ SpeakerNotes:
 name: section_docker
 layout: false
 class: center, middle
+## Docker Swarm Lab Setup
+- xx
+- xx
+- xx
+
+???
+SpeakerNotes:
+
+---
+name: section_docker
+layout: false
+class: center, middle
 ## Docker Swarm Lab
 - xx
 - xx
@@ -185,6 +197,19 @@ SpeakerNotes:
 name: section_kube
 layout: false
 class: center, middle
+## Kubernetes Lab Setup
+- xx
+- xx
+- xx
+
+???
+SpeakerNotes:
+
+
+---
+name: section_kube
+layout: false
+class: center, middle
 ## Kubernetes Lab
 - xx
 - xx
@@ -213,6 +238,19 @@ class: center, middle
 
 ???
 SpeakerNotes:
+
+---
+name: section_mesos
+layout: false
+class: center, middle
+## Apache Mesos Lab Setup
+- xx
+- xx
+- xx
+
+???
+SpeakerNotes:
+
 
 ---
 name: section_mesos
