@@ -36,23 +36,25 @@ In less than 2 hours you won't become an expert but you will get good hands on e
 .right-column[
 ## Pre-requisites for this lab:
 
-You need a suitable hypervisor (VBox, libvirt).
+To run on your own machine you'll need
+- a suitable hypervisor (VBox, libvirt).
+- a recent docker client (>= docker1.12).
 
-A recent docker client (>= docker1.12).
+Lab instructions are here:
+https://github.com/ContainerOrchestration/Labs/
 
-- Docker Swarm lab can be run either
+Docker Swarm lab can be run either
+- On your machine using docker-machine
+- On <a href="http://play-with-docker.com/"> http://play-with-docker.com </a>
+
+Kubernetes lab can be run
+  - On your machine using minikube (https://github.com/kubernetes/minikube/releases)
+  - On your machine using Haikel's Vagrant+Ansible scripts (<a href="https://github.com/mjbright/LinuxConEU-ContainerOrchestration" >here/</a>)
+
+Apache Mesos can be run
   - On your machine using docker-machine
-  - On <a href="http://play-with-docker.com/"> play-with-docker.com </a>
 
-- Kubernetes lab can be run
-  - On your machine using minikube
-  - On your machine using Haikel's Vagrant+Ansible scripts
-
-- Apache Mesos can be run
-  - On your machine using docker-machine
-
-... and other options ...
-
+<!-- ... or other options ... -->
 ]
 
 ---
@@ -117,12 +119,113 @@ Vagrant Box (to be provided - details at the above link)
 ]
 
 .right-column[
-## Lab instructions
-https://github.com/ContainerOrchestration/Labs/blob/master/README.md
+## Lab contributions and Presentations
 
-- Detailed lab steps will be provided at the above link
+All materials are at
+https://github.com/ContainerOrchestration/
+
+Contributions are welcome !
 
 ]
+
+---
+name: section_docker
+layout: false
+class: center, middle, inverse
+## Docker Swarm Lab
+  <img src=images/docker.png width=100 /><br/>
+
+???
+SpeakerNotes:
+
+---
+name: section_docker
+layout: false
+class: center, middle
+## Docker Swarm Architecture
+  <img src=images/DockerSwarmArchi.svg width=800 />
+
+???
+SpeakerNotes:
+
+---
+name: section_docker
+layout: false
+class: center, middle
+## Docker Swarm Lab
+- xx
+- xx
+- xx
+
+???
+SpeakerNotes:
+
+---
+name: section_kube
+layout: false
+class: center, middle, inverse
+## Kubernetes Lab
+  <img src=images/kubernetes.png width=100 /><br/>
+
+
+???
+SpeakerNotes:
+
+---
+name: section_kube
+layout: false
+class: center, middle
+## Kubernetes Architecture
+  <img src=images/KubernetesArchi.svg width=800 />
+
+
+???
+SpeakerNotes:
+---
+name: section_kube
+layout: false
+class: center, middle
+## Kubernetes Lab
+- xx
+- xx
+- xx
+
+???
+SpeakerNotes:
+
+
+---
+name: section_mesos
+layout: false
+class: center, middle, inverse
+## Apache Mesos Lab
+  <img src=images/mesos-logo.png width=100 /><br/>
+
+???
+SpeakerNotes:
+
+---
+name: section_mesos
+layout: false
+class: center, middle
+## Apache Mesos Architecture
+  <img src=images/MesosArchi.svg width=800 />
+
+???
+SpeakerNotes:
+
+---
+name: section_mesos
+layout: false
+class: center, middle
+## Apache Mesos Lab
+- xx
+- xx
+- xx
+
+???
+SpeakerNotes:
+
 
 ---
 name: last-page
