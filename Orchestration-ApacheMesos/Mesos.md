@@ -66,7 +66,7 @@ echo $MESOS_MASTERIP
 
 Then open your web browser at the page http://$MESOS_MASTERIP:8080 and you should see the Marathon console, as shown here
 
-![](images/marathon_dashboard.png)
+![](https://github.com/mjbright/LinuxConEU-ContainerOrchestration/blob/master/images/marathon_dashboard.png)
 
 ### Access the Mesos console fro your laptop
 
@@ -98,7 +98,7 @@ curl -X POST -H "Accept: application/json" -H "Content-Type: application/json" h
 
 The Marathon console, at http://localhost:8080, should now show these 2 services running:
 
-![](images/marathon_dashboard_2services.png)
+![](https://github.com/mjbright/LinuxConEU-ContainerOrchestration/blob/master/images/marathon_dashboard_2services.png)
 
 Play with the Marathon console: scale applications, kill them etc...
 
