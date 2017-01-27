@@ -3,42 +3,172 @@
 
 Based on Mario's gist here: https://gist.github.com/l0rd/5186cc80f8f26dc7e9490abca4405830
 
-In this version of the lab we will use the <a href="http://play-with-docker.com/" > http://play-with-docker.com/</a> infrastructure to run the lab.
+In this version of the lab we will use the http://play-with-docker.com/ infrastructure to run the lab.
 
 # Requirements
 - Web browser
 
-# Connect to play-with-docker
+# Create 3 nodes for your swarm cluster (one master and 2 slaves)
 
-Connect using the link <a href="http://play-with-docker.com/" > http://play-with-docker.com/</a>.
+We will create 3 nodes using docker-machine/virtualbox.
 
-If you are not a robot click the captcha button - go on I trust you ;-)
+#### NOTE:
+You may see errors as below, and an error reported by "docker-machine ls", leave some time for the swmaster to settle.
 
-<img src="images/DockerSwarm_PWD/playwithdocker_robotq.png" width=600 /> <br/>
-
-# Create 5 nodes (p-w-d maximum) for your swarm cluster
-
-Later we will set them up to be 3 masters and 2 slaves.
-
-Click on the "ADD NEW INSTANCE" link on the left pane, then you should see your instance listed on the left and it's console displayed on the right as in this image:
-<img src="images/DockerSwarm_PWD/Selection_010.png" width=800 /> <br/>
-
-Note that up top is displayed the current node name and it's ip address.
-<br/>
-<img src="images/DockerSwarm_PWD/Selection_011.png" width=800 /> <br/>
-
-As reproduced here:
-<br/>
-<img src="images/DockerSwarm_PWD/Selection_012.png" width=400 /> <br/>
-
-Now go ahead and create 4 more instances as shown here:
-<br/>
-<img src="images/DockerSwarm_PWD/Selection_013.png" width=800 /> <br/>
+In the meantime you can go ahead and create the 2 swnode's below.
 
 
-# Initialize our swarm cluster
+```bash
+. ../docker1.13.0.rc
+```
 
-Now that we have 5 nodes available, we will initialize our Swarm Cluster with 3 master nodes.
+Let's cleanup any remaining machines, if they exist already ..
+
+
+```bash
+docker-machine rm -f swmaster swnode1 swnode2
+```
+
+    About to remove swmaster, swnode1, swnode2
+    Successfully removed swmaster
+    Successfully removed swnode1
+    Successfully removed swnode2
+
+
+Now let's create our new nodes
+
+
+```bash
+docker-machine create -d virtualbox swmaster
+```
+
+    Running pre-create checks...
+    Creating machine...
+    (swmaster) Copying /home/mjb/.docker/machine/cache/boot2docker.iso to /home/mjb/.docker/machine/machines/swmaster/boot2docker.iso...
+    (swmaster) Creating VirtualBox VM...
+    (swmaster) Creating SSH key...
+    (swmaster) Starting the VM...
+    (swmaster) Check network to re-create if needed...
+    (swmaster) Waiting for an IP...
+    Waiting for machine to be running, this may take a few minutes...
+    Detecting operating system of created instance...
+    Waiting for SSH to be available...
+    Detecting the provisioner...
+    Provisioning with boot2docker...
+    Copying certs to the local machine directory...
+    Copying certs to the remote machine...
+    Setting Docker configuration on the remote daemon...
+    Checking connection to Docker...
+    Docker is up and running!
+    To see how to connect your Docker Client to the Docker Engine running on this virtual machine, run: docker-machine env swmaster
+
+
+
+```bash
+docker-machine ls
+```
+
+    NAME       ACTIVE   DRIVER       STATE     URL                         SWARM   DOCKER    ERRORS
+    swmaster   -        virtualbox   Running   tcp://192.168.99.114:2376           v1.13.0   
+
+
+
+```bash
+docker-machine create -d virtualbox swnode1
+```
+
+    Running pre-create checks...
+    Creating machine...
+    (swnode1) Copying /home/mjb/.docker/machine/cache/boot2docker.iso to /home/mjb/.docker/machine/machines/swnode1/boot2docker.iso...
+    (swnode1) Creating VirtualBox VM...
+    (swnode1) Creating SSH key...
+    (swnode1) Starting the VM...
+    (swnode1) Check network to re-create if needed...
+    (swnode1) Waiting for an IP...
+    Waiting for machine to be running, this may take a few minutes...
+    Detecting operating system of created instance...
+    Waiting for SSH to be available...
+    Detecting the provisioner...
+    Provisioning with boot2docker...
+    Copying certs to the local machine directory...
+    Copying certs to the remote machine...
+    Setting Docker configuration on the remote daemon...
+    Checking connection to Docker...
+    Docker is up and running!
+    To see how to connect your Docker Client to the Docker Engine running on this virtual machine, run: docker-machine env swnode1
+
+
+
+```bash
+docker-machine ls
+```
+
+    NAME       ACTIVE   DRIVER       STATE     URL                         SWARM   DOCKER    ERRORS
+    swmaster   -        virtualbox   Running   tcp://192.168.99.114:2376           v1.13.0   
+    swnode1    -        virtualbox   Running   tcp://192.168.99.115:2376           v1.13.0   
+
+
+
+```bash
+time docker-machine create -d virtualbox swnode2
+```
+
+    Running pre-create checks...
+    Creating machine...
+    (swnode2) Copying /home/mjb/.docker/machine/cache/boot2docker.iso to /home/mjb/.docker/machine/machines/swnode2/boot2docker.iso...
+    (swnode2) Creating VirtualBox VM...
+    (swnode2) Creating SSH key...
+    (swnode2) Starting the VM...
+    (swnode2) Check network to re-create if needed...
+    (swnode2) Waiting for an IP...
+    Waiting for machine to be running, this may take a few minutes...
+    Detecting operating system of created instance...
+    Waiting for SSH to be available...
+    Detecting the provisioner...
+    Provisioning with boot2docker...
+    Copying certs to the local machine directory...
+    Copying certs to the remote machine...
+    Setting Docker configuration on the remote daemon...
+    Checking connection to Docker...
+    Docker is up and running!
+    To see how to connect your Docker Client to the Docker Engine running on this virtual machine, run: docker-machine env swnode2
+    
+    real	1m0.897s
+    user	0m0.670s
+    sys	0m0.053s
+
+
+
+```bash
+docker-machine ls
+```
+
+    NAME       ACTIVE   DRIVER       STATE     URL                         SWARM   DOCKER    ERRORS
+    swmaster   -        virtualbox   Running   tcp://192.168.99.114:2376           v1.13.0   
+    swnode1    -        virtualbox   Running   tcp://192.168.99.115:2376           v1.13.0   
+    swnode2    -        virtualbox   Running   tcp://192.168.99.116:2376           v1.13.0   
+
+
+# swarm init
+
+Now that we have 3 nodes available, we will initialize our Swarm Cluster with 1 master node.
+
+### Directing the docker client to a particular nodes' docker daemon
+**NOTE**: See that we precede all docker commands with $(docker-machine config NODE) where node is the name of the node to which we want our docker client to connect to.  This command returns the parameters to direct our client to the appropriate node.  Run alone this produces:
+
+
+```bash
+docker-machine config swmaster
+```
+
+    --tlsverify
+    --tlscacert="/home/mjb/.docker/machine/certs/ca.pem"
+    --tlscert="/home/mjb/.docker/machine/certs/cert.pem"
+    --tlskey="/home/mjb/.docker/machine/certs/key.pem"
+    -H=tcp://192.168.99.114:2376
+
+
+Including these parameters on the docker command line will connect the client to the docker daemon running on node '*swmaster*'.
 
 ### Networks before creation of swarm cluster
 Before going further let's look at the networks on your machine.
@@ -46,95 +176,37 @@ Before going further let's look at the networks on your machine.
 Later, we'll see how a new network is created once the swarm cluster has been created.
 
 
+```bash
+docker $(docker-machine config swmaster) network ls
+```
+
     NETWORK ID          NAME                DRIVER              SCOPE
     c7c01d8b70a3        bridge              bridge              local
     e16375837cfa        host                host                local
     f22f49175ae7        none                null                local
 
 
-## Initialize the cluster from node1
+Now let's identify the ip address of our master node.
 
-Use the ip address of your node1 in the command below:
-```
-    docker swarm init --advertise-addr 10.0.14.3
-```
-<br/>
-<img src="images/DockerSwarm_PWD/Selection_014.png" width=800 /> <br/>
+We can see this through config or ip commands of docker-machine as shown below.
 
-The above command provides us with the command which we can run on other nodes to allow them to join
-the cluster as a worker node.
 
-We can obtain this information from a management node (only node1 so far) by the following command:
-<br/>
-```
-    docker swarm join-token worker
+```bash
+docker-machine ip swmaster
 ```
 
-Similarly we can obtain the command to add a new Master node (only node1 so far) by the following command:
-<br/>
-```
-    docker swarm join-token master
-```
-Now run the provided
-<br/>
-```
-    docker swarm join --token TOKEN IP:PORT
-```
-<br/>
- command on node2.
+    192.168.99.114
 
-Note that now both node1 and node2 have a special blue symbol indicating that they are Swarm Master nodes:
-<br/>
-<img src="images/DockerSwarm_PWD/Selection_015.png" width=800 /> <br/>
 
-Now run the same provided
-<br/>
-```
-    docker swarm join --token TOKEN IP:PORT
-```
-<br/>
- command on node3, which will also then have the blue symbol.
+We could then provide the above ip address as parameter to --advertise-addr when initializing the swarm.
 
-<br/>
-<img src="images/DockerSwarm_PWD/Selection_016.png" width=800 /> <br/>
+However, it is quite convenient to run the above commands embedded, as below, as arguments to the swarm init command.
 
-Now that node3 is also a Master node we can obtain the command to add new Worker nodes
-using the
-<br/>
-```
-    docker swarm join-token worker
-```
-<br/>
-command
+docker-machine config swmaster provides the parameters to use when connecting to the appropriate docker engine for our machine "swmaster".
 
-<br/>
-<img src="images/DockerSwarm_PWD/Selection_017.png" width=800 /> <br/>
+The following command will run swarm init to generate the cluster with 'swmaster' as the Master node.
+You should see output similar to the below:
 
-Now use this command to add node4 as a Worker node:
-
-<br/>
-<img src="images/DockerSwarm_PWD/Selection_018.png" width=800 /> <br/>
-
-... and node5 as a Worker node:
-
-<br/>
-<img src="images/DockerSwarm_PWD/Selection_019.png" width=800 /> <br/>
-
-Note in the above image that we now have grey symbols to depict that node4 and node5 have
-joined the cluster as Worker nodes.
-
-<br/>
-<img src="images/DockerSwarm_PWD/Selection_020.png" width=800 /> <br/>
-<br/>
-<img src="images/DockerSwarm_PWD/Selection_021.png" width=800 /> <br/>
-<br/>
-<img src="images/DockerSwarm_PWD/Selection_022.png" width=800 /> <br/>
-<br/>
-<img src="images/DockerSwarm_PWD/Selection_023.png" width=800 /> <br/>
-<br/>
-<img src="images/DockerSwarm_PWD/Selection_024.png" width=800 /> <br/>
-<br/>
-<img src="images/DockerSwarm_PWD/Selection_025.png" width=800 /> <br/>
 
 ```bash
 docker $(docker-machine config swmaster) swarm init --advertise-addr $(docker-machine ip swmaster)
@@ -624,18 +696,26 @@ docker $(docker-machine config swmaster) ps
 ```bash
 
 ```
-<br/>
-<img src="images/DockerSwarm_PWD/Selection_026.png" width=800 /> <br/>
-<br/>
-<img src="images/DockerSwarm_PWD/Selection_027.png" width=800 /> <br/>
-<br/>
-<img src="images/DockerSwarm_PWD/Selection_028.png" width=800 /> <br/>
-<br/>
-<img src="images/DockerSwarm_PWD/Selection_029.png" width=800 /> <br/>
-<br/>
-<img src="images/DockerSwarm_PWD/Selection_030.png" width=800 /> <br/>
-<br/>
-<img src="images/DockerSwarm_PWD/Selection_031.png" width=800 /> <br/>
-<br/>
-<img src="images/DockerSwarm_PWD/Selection_032.png" width=800 /> <br/>
-
+![](images/DockerSwarm_PWD/Selection_010.png)
+![](images/DockerSwarm_PWD/Selection_011.png)
+![](images/DockerSwarm_PWD/Selection_012.png)
+![](images/DockerSwarm_PWD/Selection_013.png)
+![](images/DockerSwarm_PWD/Selection_014.png)
+![](images/DockerSwarm_PWD/Selection_015.png)
+![](images/DockerSwarm_PWD/Selection_016.png)
+![](images/DockerSwarm_PWD/Selection_017.png)
+![](images/DockerSwarm_PWD/Selection_018.png)
+![](images/DockerSwarm_PWD/Selection_019.png)
+![](images/DockerSwarm_PWD/Selection_020.png)
+![](images/DockerSwarm_PWD/Selection_021.png)
+![](images/DockerSwarm_PWD/Selection_022.png)
+![](images/DockerSwarm_PWD/Selection_023.png)
+![](images/DockerSwarm_PWD/Selection_024.png)
+![](images/DockerSwarm_PWD/Selection_025.png)
+![](images/DockerSwarm_PWD/Selection_026.png)
+![](images/DockerSwarm_PWD/Selection_027.png)
+![](images/DockerSwarm_PWD/Selection_028.png)
+![](images/DockerSwarm_PWD/Selection_029.png)
+![](images/DockerSwarm_PWD/Selection_030.png)
+![](images/DockerSwarm_PWD/Selection_031.png)
+![](images/DockerSwarm_PWD/Selection_032.png)
