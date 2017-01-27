@@ -78,7 +78,7 @@ Similarly we can obtain the command to add a new Master node (only node1 so far)
 <br/>
 <br/>
 ```
-    docker swarm join-token master
+    docker swarm join-token manager
 ```
 <br/>
 <br/>
