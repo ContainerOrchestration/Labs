@@ -36,23 +36,45 @@ In less than 2 hours you won't become an expert but you will get good hands on e
 .right-column[
 ## Pre-requisites for this lab:
 
-To run on your own machine you'll need
+To run these labs on your own machine you'll need
 - a suitable hypervisor (VBox, libvirt).
 - a recent docker client (>= docker1.12).
+- docker-machine
+- MINIKUBE for the Kubernetes lab
 
 Lab instructions are here:
 https://github.com/ContainerOrchestration/Labs/
 
+These slides are here:
+https://containerorchestration.github.io/Labs/Lab_remark.html
+
+**NOTE:** The Docker Swarm lab can be run online on 
+<a href="http://play-with-docker.com/"> http://play-with-docker.com </a> in which case you only need a web browser
+]
+
+---
+.left-column[
+## Lab
+.footnote[.gray[ @hguemar @mjbright @mariolet ]]
+]
+
+.right-column[
+## Pre-requisites for this lab:
 Docker Swarm lab can be run either
 - On your machine using docker-machine
+    - See instructions <a href="https://github.com/ContainerOrchestration/Labs/blob/master/Orchestration-DockerSwarm/DockerSwarm.md">here</a>
 - On <a href="http://play-with-docker.com/"> http://play-with-docker.com </a>
+    - See instructions <a href="https://containerorchestration.github.io/Labs/Orchestration-DockerSwarm/DockerSwarm_PWD.html" >here</a>
 
 Kubernetes lab can be run
   - On your machine using minikube (https://github.com/kubernetes/minikube/releases)
-  - On your machine using Haikel's Vagrant+Ansible scripts (<a href="https://github.com/mjbright/LinuxConEU-ContainerOrchestration" >here/</a>)
+    - See instructions <a href="https://github.com/ContainerOrchestration/Labs/blob/master/Orchestration-Kubernetes/Kubernetes.md" >here</a>
+  - On your machine using Haikel's Vagrant+Ansible scripts
+    - See instructions <a href="https://github.com/mjbright/LinuxConEU-ContainerOrchestration" >here</a>
 
 Apache Mesos can be run
   - On your machine using docker-machine
+    - See instructions <a href="https://github.com/ContainerOrchestration/Labs/blob/master/Orchestration-ApacheMesos/Mesos.md" >here</a>
 
 <!-- ... or other options ... -->
 ]
@@ -128,6 +150,8 @@ Contributions are welcome !
 
 In particular I'd love to be able to run Kubernetes and Mesos labs as multi-node under play-with-docker ...
 
+Any extensions to these labs are welcome
+
 ]
 
 ---
@@ -154,6 +178,7 @@ SpeakerNotes:
 name: section_docker
 layout: false
 class: center, middle
+exclude: true
 ## Docker Swarm Lab Setup
 - xx
 - xx
@@ -167,9 +192,14 @@ name: section_docker
 layout: false
 class: center, middle
 ## Docker Swarm Lab
-- xx
-- xx
-- xx
+
+
+Docker Swarm lab can be run either
+- On your machine using docker-machine
+    - See instructions <a href="https://github.com/ContainerOrchestration/Labs/blob/master/Orchestration-DockerSwarm/DockerSwarm.md">here</a>
+- On <a href="http://play-with-docker.com/"> http://play-with-docker.com </a>
+    - See instructions <a href="https://containerorchestration.github.io/Labs/Orchestration-DockerSwarm/DockerSwarm_PWD.html" >here</a>
+
 
 ???
 SpeakerNotes:
@@ -199,6 +229,7 @@ SpeakerNotes:
 name: section_kube
 layout: false
 class: center, middle
+exclude: true
 ## Kubernetes Lab Setup
 - xx
 - xx
@@ -213,9 +244,13 @@ name: section_kube
 layout: false
 class: center, middle
 ## Kubernetes Lab
-- xx
-- xx
-- xx
+
+Kubernetes lab can be run
+  - On your machine using minikube (https://github.com/kubernetes/minikube/releases)
+    - See instructions <a href="https://github.com/ContainerOrchestration/Labs/blob/master/Orchestration-Kubernetes/Kubernetes.md" >here</a>
+  - On your machine using Haikel's Vagrant+Ansible scripts
+    - See instructions <a href="https://github.com/mjbright/LinuxConEU-ContainerOrchestration" >here</a>
+
 
 ???
 SpeakerNotes:
@@ -245,6 +280,7 @@ SpeakerNotes:
 name: section_mesos
 layout: false
 class: center, middle
+exclude: true
 ## Apache Mesos Lab Setup
 - xx
 - xx
@@ -259,9 +295,11 @@ name: section_mesos
 layout: false
 class: center, middle
 ## Apache Mesos Lab
-- xx
-- xx
-- xx
+
+
+Apache Mesos can be run
+  - On your machine using docker-machine
+    - See instructions <a href="https://github.com/ContainerOrchestration/Labs/blob/master/Orchestration-ApacheMesos/Mesos.md" >here</a>
 
 ???
 SpeakerNotes:
