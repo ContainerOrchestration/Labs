@@ -126,6 +126,8 @@ https://github.com/ContainerOrchestration/
 
 Contributions are welcome !
 
+In particular I'd love to be able to run Kubernetes and Mesos labs as multi-node under play-with-docker ...
+
 ]
 
 ---
