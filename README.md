@@ -131,14 +131,14 @@ There are 3 lab sections for Docker Swarm, Kubernetes and Apache Mesos and you m
 </tr>
 
 <tr bgcolor="#C0C0C0">
-    <td> Minikube (about 80 MBy) </td> <td>     </td> <td> https://github.com/kubernetes/minikube/releases </td>
+    <td> Minikube<br/>(about 80 MBy) </td> <td>     </td> <td> https://github.com/kubernetes/minikube/releases </td>
 </tr>
 
 <tr bgcolor="#C0C0C0">
-    <td> Kubectl (about 70 MBy)</td> <td>     </td> <td> https://kubernetes.io/docs/tasks/kubectl/install/ </td>
+    <td> Kubectl<br/>(about 70 MBy)</td> <td>     </td> <td> https://kubernetes.io/docs/tasks/kubectl/install/ </td>
 </tr>
 <tr bgcolor="#C0C0C0">
-    <td> Vagrant (about 80 MBy)</td> <td>     </td> <td> https://www.vagrantup.com/downloads.html </td>
+    <td> Vagrant<br/>(about 80 MBy)</td> <td>     </td> <td> https://www.vagrantup.com/downloads.html </td>
 </tr>
 <tr bgcolor="#C0C0C0">
     <td> VirtualBox for macOS<br/>(about 90 MBy)</td> <td>     </td> <td> http://download.virtualbox.org/virtualbox/5.1.22/VirtualBox-5.1.22-115126-OSX.dmg </td>
