@@ -140,6 +140,12 @@ There are 3 lab sections for Docker Swarm, Kubernetes and Apache Mesos and you m
 <tr bgcolor="#C0C0C0">
     <td> Vagrant (about 80 MBy)</td> <td>     </td> <td> https://www.vagrantup.com/downloads.html </td>
 </tr>
+<tr bgcolor="#C0C0C0">
+    <td> VirtualBox for macOS<br/>(about 90 MBy)</td> <td>     </td> <td> http://download.virtualbox.org/virtualbox/5.1.22/VirtualBox-5.1.22-115126-OSX.dmg </td>
+</tr>
+<tr bgcolor="#C0C0C0">
+    <td> VirtualBox for Windows<br/>(about 120 MBy)</td> <td>     </td> <td> http://download.virtualbox.org/virtualbox/5.1.22/VirtualBox-5.1.22-115126-Win.exe </td>
+</tr>
 
 <tr bgcolor="#C0C0C0">
     <td> GCloud SDK </td> <td>     </td> <td> https://cloud.google.com/sdk/ </td>
