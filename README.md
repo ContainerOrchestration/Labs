@@ -141,10 +141,10 @@ There are 3 lab sections for Docker Swarm, Kubernetes and Apache Mesos and you m
     <td> Vagrant<br/>(about 80 MBy)</td> <td>     </td> <td> https://www.vagrantup.com/downloads.html </td>
 </tr>
 <tr bgcolor="#C0C0C0">
-    <td> VirtualBox for macOS<br/>(about 90 MBy)</td> <td>     </td> <td> http://download.virtualbox.org/virtualbox/5.1.22/VirtualBox-5.1.22-115126-OSX.dmg </td>
+    <td> VirtualBox for macOS<br/>(about 90 MBy)</td> <td> http://download.virtualbox.org/virtualbox/5.1.22/VirtualBox-5.1.22-115126-OSX.dmg </td> <td> </td>
 </tr>
 <tr bgcolor="#C0C0C0">
-    <td> VirtualBox for Windows<br/>(about 120 MBy)</td> <td>     </td> <td> http://download.virtualbox.org/virtualbox/5.1.22/VirtualBox-5.1.22-115126-Win.exe </td>
+    <td> VirtualBox for Windows<br/>(about 120 MBy)</td> <td> http://download.virtualbox.org/virtualbox/5.1.22/VirtualBox-5.1.22-115126-Win.exe </td> <td> </td>
 </tr>
 
 <tr bgcolor="#C0C0C0">
