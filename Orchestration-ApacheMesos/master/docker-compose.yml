@@ -1,0 +1,41 @@
+# Zookeeper
+#
+# https://registry.hub.docker.com/u/jplock/zookeeper/
+#
+zk1:
+  image: jplock/zookeeper:3.4.6
+  ports: 
+    - "2181:2181"
+
+#
+# Mesos master
+#
+# https://registry.hub.docker.com/u/redjack/mesos-master/
+# http://mesos.apache.org/documentation/latest/configuration/
+#
+mesos1:
+  image: redjack/mesos-master:0.21.0
+  ports:
+    - "5050:5050"
+  links:
+    - "zk1:zookeeper1"
+  environment:
+    MESOS_LOG_DIR: /var/log
+    MESOS_CLUSTER: localmesos
+    MESOS_ZK: zk://zookeeper1:2181/mesos
+    MESOS_WORK_DIR: /var/lib/mesos
+    
+
+#
+# Marathon
+#
+# https://registry.hub.docker.com/u/mesosphere/marathon/
+#
+marathon:
+  image: mesosphere/marathon:v0.8.1
+  ports:
+    - "8080:8080"
+  links:
+    - "zk1:zookeeper1"
+    - "mesos1"
+  command: "--master zk://zookeeper1:2181/mesos --zk zk://zookeeper1:2181/marathon"
