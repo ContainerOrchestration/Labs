@@ -3,6 +3,21 @@
 This document describes what you need to do to follow these labs
 (Updated for PyConUS 2017, Portland, May 2017).
 
+## Before starting the lab ... a <font color="#ff4444"> little Survey please </font>
+
+Once you're ready to come to the tutorial - meaning that either
+- you decided what environment/mix of environments you'll use
+- you don't know (no problem, we can advise)
+
+to run different parts of the lab, please respond to the following anonymous survey.
+
+This will help us to help you during the lab, to know what are your expectations, your experience and what environment you choose to use or if
+you don't know what to choose.
+
+Thanks to fill out the survey <b>
+<b> <a href="https://fr.surveymonkey.com/r/6DCVNNF"> <font color="#ff4444"> Survey here </font> </a>
+
+
 ## Pre-requisites
 For this lab you will need a laptop either with specific software installed as described below or to browse to online cloud services.
 - Minimum: Laptop with browser
@@ -187,7 +202,7 @@ There are 3 lab sections for Docker Swarm, Kubernetes and Apache Mesos and you m
     <td> Play-with-docker <br/>https://labs.play-with-docker.com </td> <td>     Free</td>  <td> N/A </td>
 </tr>
 <tr bgcolor="#C0C0C0"> <!-- Future Talk -->
-    <td> Digital Ocean </td><td>Paid</td> <td> (Hoping to get free access for all for this lab ... watch this space) https://cloud.digitalocean.com/registrations/new </td>
+    <td> Digital Ocean </td><td>Paid</td> <td> https://cloud.digitalocean.com/registrations/new </td>
 </tr>
 <tr bgcolor="#C0C0C0"> <!-- Future Talk -->
     <td> Google Cloud </td><td>   Paid  </td>
