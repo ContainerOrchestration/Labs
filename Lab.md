@@ -4,12 +4,6 @@ class: center, middle, inverse
 
 ## Container Orchestration Tutorial
 ### PyCon 2017, Portland
-<!-- TODO: REPLACE with presentation venue
-
--->
-
-<!-- [.bold.green[Container Orchestration: Swarm, Mesos, Kubernetes - Which Conductor?]] -->
-
 <h3> <img width=120 src="images/Hewlett_Packard_Enterprise_whiteText_logo.svg" /> &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; Mike Bright, <img src="images/Twitter_Bird.svg" width=24 /> @mjbright </h3>
 <h4> <img width=93 height=30 src="images/RedHat_whiteText_logo.svg" /> &nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp; Haikel Guemar, <img src="images/Twitter_Bird.svg" width=24 /> @hguemar </h4>
 <h4>... and absent friends ...</h4>
@@ -18,57 +12,158 @@ class: center, middle, inverse
 ???
 SpeakerNotes:
 
-Introduce ourselves.
+---
+layout: false
+class: middle
 
-Why this presentation?
+<center>
+<h2> Logistics </h2>
+</center>
 
-Container Orchestration is a hot topic with multiple vendors positioning themselves in this space.
+- We will run from 13h20 to 16h40 with a 20 minutes break.
 
-It's not easy to make a choice but the great news is that most of these orchestration engines are Open Source !
-In fact all are OpenSource except the hosted versions.
-What licenses?
+- Thanks to fill in the Survey before starting-[1] https://fr.surveymonkey.com/r/6DCVNNF
 
-TODO: Replace (many) images with "hand drawn" images (via Wacom or Inkscape?)
-      Use Jupyter/matplotlib->svg/%%svg for images, graphs, animations ...
+- Tutorial materials are online at https://github.com/ContainerOrchestration/Labs/tree/PyConUS2017
 
-TODO: Take tips from this presn: http://asmeurer.github.io/python3-presentation/slides.html#1
-      How does this guy do his titles? http://kjbekkelund.github.io/js-architecture-backbone/#2
+- These slides are online at https://github.com/ContainerOrchestration/Labs/tree/PyConUS2017/Lab_remark.html
 
-This presentation on [github](https://github.com/mjbright/LinuxConEU-ContainerOrchestration) on [ContainerCon Schedule](https://linuxconcontainerconeurope2016.sched.org/event/7oHV/container-orchestration-swarm-mesos-kubernetes-which-conductor-mike-bright-hpe)
+[1] - The survey lets us know
+- the overall experience of the group
+- your expectations
+- whether help is needed in installing software
 
-Abstract
----------
 
-Oh my, as if we didn’t have enough container choices with LXC, Docker, rkt, LXD, we still have to choose a container orchestrator and there are lots of them !
+---
+layout: false
+class: middle
 
-Worse - the choice of orchestrator is the new industry battleground.
-Feature sets increase rapidly and industry players are making acquisitions and investments.
+<center>
+<h2> Tutorial Overview </h2>
+</center>
 
-It’s still early days in container orchestration and so existing solutions partially overlap meaning that combinations of orchestrators may be needed.
+We will look at these Container Orchestration Engines:
+- Docker Swarm mode
+- Kubernetes
+- Apache Mesos
 
-So how should you choose for your use case?
+We will look at command-line use and also use of Python api-bindings for each engine.
 
-In this talk we’ll take a look at what is orchestration and why you need it.
-We’ll look at the main contenders amongst Docker Swarm, Google’s Kubernetes, Apache Mesos as well as Fleet, Rancher/cattle and Juju.
+In less than 2 hours you won't become an expert but you will get good hands on experience.
 
-We’ll compare and contrast the existing solutions, look at where they are heading and how you can use them in your solution today and tomorrow.
+.footnote[.gray[ @hguemar @mjbright @mariolet ]]
 
-I'm not an expert in this fast moving field, but I hope to give you an overview so you better understand the many tools on offer, so you can differentiate between them.
 
-Everything I tell you may be factual today, but will surely be false in a few months as these fast moving projects vie for position.
+---
+layout: false
+class: middle
 
-.footnote[.vlightgray[ @hguemar @mjbright @mariolet ]]
+<center>
+<h2> Tutorial Setup </h2>
+</center>
+
+- Tutorial materials are online at https://github.com/ContainerOrchestration/Labs/tree/PyConUS2017
+
+- These slides are online at https://github.com/ContainerOrchestration/Labs/tree/PyConUS2017/Lab_remark.html
+
+- We have software available on USB keys for Linux, MacOS and Windows
+
+- There are online options for running the labs
+
+---
+layout: false
+class: middle
+
+<center>
+<h2> Setup Recommendations </h2>
+</center>
+
+<table>
+<tr bgcolor="#cccccc"><th>Section</th> <th>either</th> <th>or</th> <th>but also ...</th> </tr>
+<tr><td>Docker cli</td> <td> <a href="http://www.play-with-docker.com"> play-with-docker.com</a> </td> <td>On your machine</td> <td> Any cloud provider<br/>(standard Docker tools) </td> </tr>
+<tr bgcolor="#eeeeee"><td>Docker py</td> <td>    -   "   -        </td> <td>    -    "      -    </td> <td>     -    "      -  </td> </tr>
+<tr><td>Kubernetes cli</td> <td>GCloud</td> <td>On your machine<br/>(Minikube)</td> <td> Any cloud provider<br/>(not documented) </td> </tr>
+<tr bgcolor="#eeeeee"><td>Kubernetes py</td> <td>    -   "   -        </td> <td>    -    "      -    </td> <td>     -    "      -  </td> </tr>
+<tr><td>Mesos cli</td> <td>   ................ </td> <td>On your machine<br/>(Minimesos)</td> <td> AWS, GCloud<br/>(running minimesos)</td> </tr>
+<tr bgcolor="#eeeeee"><td>Mesos py</td> <td>    -   "   -        </td> <td>    -    "      -    </td> <td>     -    "      -  </td> </tr>
+</table>
+
+TODO:
+- retest Docker-cli Docker-py with PWD
+- document how to setup Kubernetes cluster on GCloud
+- document how to setup Mesos in cloud or in PWD?
+- Setup backup PWD instances ...
+
+---
+layout: false
+class: top
+
+.footnote[.gray[ @hguemar @mjbright @mariolet ]]
+<center>
+<h2> The Tutorial </h2>
+</center>
+
+We will introduce each Orchestration technology during the afternoon
+- Docker Swarm mode
+- Kubernetes
+- Apache Mesos
+
+--
+
+In less than 2 hours you won't become an expert but you will get good hands on experience.
+
+We will look at command-line use and also use of Python api-bindings for each engine.
+
+--
+
+Nevertheless feel free to stay with a subject or move ahead according to your interests.
+
+--
+
+Thanks to help your colleagues who may be stuck with problems.
+
+
+
+---
+layout: false
+class: top
+.footnote[.gray[ @hguemar @mjbright @mariolet ]]
+
+
+<center>
+<h2> Contributions are welcome ! </h2>
+</center>
+
+We will continue to develop this tutorial,  you can continue to access the materials on github.
+
+We welcome any feedback through 
+- github PRs (the best !)
+- github issues (it's good too ;-)
+- e-mail
+
+--
+
+Thanks to let us know of any improvements you think would be worthwhile
+- clearer documentation
+- bug fixes
+- new features
+  - of selected orchestrators
+  - other orchestrators
+  - other language-bindings
+  - other tools (e.g. Docker-map module)
+  - graphical interfaces (if you can provide in Python !)
+
 
 
 ---
 layout: false
 class: center, middle, inverse
-    ## &mu;-Services
+
+## &mu;-services
 
 ???
 SpeakerNotes:
 
-A quite different concept with the same goals of small OS, with small attack surface.
 
 ---
 layout: false
@@ -389,7 +484,7 @@ layout: false
 
 - Kontena &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-- OpenStack Magnum
+- Morpheus
 ]
 
 .footnote[.vlightgray[ @hguemar @mjbright @mariolet ]]
@@ -746,16 +841,6 @@ Run through https://docs.docker.com/engine/swarm/swarm-tutorial/
 Complete above commands !
 
 ---
-name: section_docker
-layout: false
-class: center, middle, inverse
-## Docker Swarm Demo
-  <img src=images/docker.png width=100 /><br/>
-
-???
-SpeakerNotes:
-
----
 layout: false
 
 .left-column[
@@ -765,7 +850,7 @@ layout: false
 ]
 
 .right-column[
-## Docker Swarm Demo
+## Docker Swarm Tutorial
   - Creation of a 3 node cluster
 
   - Run a service on the cluster and scale it to 3 replicas
@@ -1281,12 +1366,36 @@ Container-OSes: CoreOS Linux or Atomic
 name: section_kubernetes
 layout: false
 class: center, middle, inverse
-## Kubernetes Demo
+## Kubernetes Tutorial
   <img src=images/kubernetes.png width=100 /><br/>
 
 #### - <a href="https://github.com/kubernetes/minikube"/> Minikube </a> [single node cluster]
 #### - <a href="http://kubernetes.io/docs/tutorials/kubernetes-basics/"/> Kubernetes Tutorial </a>
 #### - <a href="https://github.com/kubernetes/kubernetes/tree/master/examples"/> GCP: Kubernetes Tutorial </a>
+
+???
+SpeakerNotes:
+
+---
+layout: false
+
+.left-column[
+  <img src=images/docker.png width=100 /><br/>
+  ## Kubernetes Tutorial
+  .footnote[.red[] [docker.com](https://docker.com)]
+]
+
+.right-column[
+## Kubernetes Tutorial
+  - ???
+
+  - ???
+
+  - ???
+
+]
+
+.footnote[.vlightgray[ @hguemar @mjbright @mariolet ]]
 
 ???
 SpeakerNotes:
@@ -1527,6 +1636,29 @@ SpeakerNotes:
 Note; App container management can scale out to existing nodes, but cannot manage infrastructure resources.
 OpenStack as a IaaS, via Ironic project can spin up new BM/VM/"LXD?" nodes to provide new resources.
 
+---
+layout: false
+
+.left-column[
+  <img src=images/xxx.png width=100 /><br/>
+  ## Apache Mesos Tutorial
+  .footnote[.red[] [docker.com](https://docker.com)]
+]
+
+.right-column[
+  ## Apache Mesos Tutorial
+  - ???
+
+  - ???
+
+  - ???
+]
+
+.footnote[.vlightgray[ @hguemar @mjbright @mariolet ]]
+
+???
+SpeakerNotes:
+
 
 ---
 name: section_choosing
@@ -1726,12 +1858,17 @@ class: center, inverse
 
 # Thank you - Questions?
 
-<br/>
 <image width=100 src="images/Orchestration_Chaos.svg" />
 
 #### Latest slides available at:
 <a href="https://containerorchestration.github.io/ContainerOrchestration/#1">
 https://containerorchestration.github.io/ContainerOrchestration/ </a>
+<br/>
+#### Sources available at:
+<a href="https://github.com/ContainerOrchestration/"> https://github.com/ContainerOrchestration </a>
+
+#### Latest Tutorials available at:
+<a href="https://github.com/ContainerOrchestration/Labs"> https://github.com/ContainerOrchestration/Labs </a>
 
 .footnote[.vlightgray[ @hguemar @mjbright @mariolet ]]
 
