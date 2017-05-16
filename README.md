@@ -1,8 +1,3 @@
-<style>
-.blue   {color: blue;}
-.red    {color: red;}
-</style>
-
 # ContainerOrchestration Lab Setup
 
 This document describes what you need to do to follow these labs
@@ -20,7 +15,7 @@ This will help us to help you during the lab, to know what are your expectations
 you don't know what to choose.
 
 Thanks to fill out the 
-<b> <a href="https://fr.surveymonkey.com/r/6DCVNNF"> <div class="red" > Survey here </div> </a> </b>
+<b> <a href="https://fr.surveymonkey.com/r/6DCVNNF"> <div class="hi_red" > Survey here </div> </a> </b>
 
 
 ## Pre-requisites
