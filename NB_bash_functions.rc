@@ -1,0 +1,253 @@
+
+################################################################################
+# Notebook functions:
+
+# Function to allow cell to continue after execution error (return code != 0)
+
+function NB_continue { _=0; }
+
+# Function to allow cell to continue after execution error (return code != 0)
+
+function NB_pause { ls NO_SUCH_FILE 2>/dev/null; }
+
+################################################################################
+# text highlight functions:
+
+function NB_highlight {
+    esc=$(printf '\033')
+    sed -e "s/${1}/${esc}[31m&${esc}[0m/ig"
+}
+
+################################################################################
+# misc functions:
+
+function NB_curl_until_OK {
+    URL=$1; shift
+    
+    echo curl ${URL}
+    while ! curl ${URL};do
+        sleep 5
+    done
+}
+
+################################################################################
+# timer functions:
+
+function NB_convert_secs_to_hhmmss {
+    local _REM_SECS=$1; shift
+    
+    let SECS=_REM_SECS%60
+
+    let _REM_SECS=_REM_SECS-SECS
+
+    let MINS=_REM_SECS/60%60
+
+    let _REM_SECS=_REM_SECS-60*MINS
+
+    let HRS=_REM_SECS/3600
+
+    [ $SECS -lt 10 ] && SECS="0$SECS"
+    [ $MINS -lt 10 ] && MINS="0$MINS"
+}
+
+
+function NB_quieter_time_taken {
+    local _START_SECS=$START_SECS
+    local _TOOK_SECS
+    [ ! -z "$1" ] && _START_SECS=$1; shift
+    
+    END_SECS=$(date +%s)
+    #echo "Started at $(date)   [$_START_SECS]"
+    #echo "Ended   at $(date)   [$END_SECS]"
+    
+    let _TOOK_SECS=END_SECS-_START_SECS
+    #echo "Took $_TOOK_SECS secs"
+
+    NB_convert_secs_to_hhmmss $_TOOK_SECS
+    [ $_TOOK_SECS -ge 60 ] &&
+        echo "Took $_TOOK_SECS secs [${HRS}h${MINS}m${SECS}]" ||
+        echo "Took $_TOOK_SECS secs"
+}
+
+function NB_time_taken {
+    local _START_SECS=$START_SECS
+    local _TOOK_SECS
+    [ ! -z "$1" ] && _START_SECS=$1; shift
+
+    END_SECS=$(date +%s)
+    echo "Started at $(date)   [$_START_SECS]"
+    echo "Ended   at $(date)   [$END_SECS]"
+    
+    let _TOOK_SECS=END_SECS-_START_SECS
+    #echo "Took $_TOOK_SECS secs"
+
+    NB_convert_secs_to_hhmmss $_TOOK_SECS
+    [ $_TOOK_SECS -ge 60 ] &&
+        echo "Took $_TOOK_SECS secs [${HRS}h${MINS}m${SECS}]" ||
+        echo "Took $_TOOK_SECS secs"
+}
+
+function NB_start {
+    START_SECS=$(date +%s)
+    echo "Notebook started at $(date)   [$START_SECS]"
+}
+
+################################################################################
+# Docker loop functions:
+
+function NB_docker_loop_until_N_replicas_started {
+    SERVICE=$1; shift
+    REPLICAS=$1; shift
+    
+    local REPLICAS_START_SECS=$(date +%s)
+
+    while docker $(docker-machine config swmaster1) service ls | awk "/$SERVICE/ { print \$4; }" | grep -v "^$REPLICAS/"; do
+        sleep 10
+        echo "... waiting for '$SERVICE' $REPLICAS replicas to start"
+    done
+
+    docker $(docker-machine config swmaster1) service ls | grep $SERVICE
+    NB_quieter_time_taken $REPLICAS_START_SECS
+}
+
+function NB_docker_loop_until_service_started {
+    SERVICE=$1; shift
+    
+    while docker $(docker-machine config swmaster1) service ls | awk "/$SERVICE/ { print \$4; }" | grep -q "^0/"; do
+        sleep 5
+        echo "... waiting for '$SERVICE' replicas to start"
+    done
+
+    docker $(docker-machine config swmaster1) service ls | grep $SERVICE
+}
+
+################################################################################
+# Kubernetes loop functions:
+
+function NB_kube_loop_while_pods_creating {
+    while kubectl get pods | grep -q ContainerCreating; do
+        sleep 10
+        echo "Waiting for pods to be created ... (downloading images)"
+    done
+    
+    kubectl get pods | NB_highlight STATUS
+}
+
+
+# Function to allow cell to continue after execution error (return code != 0)
+#   e.g. 
+#        NB_kube_loop_until_available service kubernetes-docker-demo
+function NB_kube_loop_until_available {
+    local TYPE=$1; shift # e.g. deploy
+    local ITEM=$1; shift # e.g. service-name
+    
+    local LOOP_START_SECS=$(date +%s)
+    local LOOP_END_SECS=$LOOP_START_SECS
+    local LOOP_TOOK_SECS=0
+    
+    echo "Looping until $TYPE $ITEM becomes available ..."
+
+    while kubectl get --no-headers=true $TYPE $ITEM | awk '{ print $5; }' | grep -q "^0"; do
+        sleep 5
+        
+        LOOP_END_SECS=$(date +%s)
+        let LOOP_TOOK_SECS=LOOP_END_SECS-LOOP_START_SECS
+        echo "[$LOOP_TOOK_SECS secs] Retrying ..."
+    done
+    CMD="kubectl get $TYPE $ITEM"
+    echo $CMD
+    $CMD | NB_highlight available
+    
+    NB_quieter_time_taken $LOOP_START_SECS
+}
+
+function NB_kube_loop_until_dashboard_url_available {
+    while ! minikube dashboard --url; do
+        echo "Retrying ..."
+        sleep 5
+    done
+}
+
+################################################################################
+# Docker-machine functions:
+
+function NB_check_3_machines_running {
+    RUNNING=$(docker-machine ls --filter name=sw --filter state=running --format "{{.Name}}" | wc -l)
+
+    if [ $RUNNING -eq 3 ]; then
+        return 0
+    else
+        docker-machine ls --filter name=sw --filter state=running --format "{{.Name}}"
+        echo "There are not 3 running swarm machines ..."
+        NB_pause
+    fi
+}
+
+function NB_list_swarm_machines {
+    # docker-machine ls --filter name=sw --filter driver=virtualbox --format "{{.Name}}: {{.DriverName}}"
+    # docker-machine ls --filter name=sw --format "{{.Name}}: {{.DriverName}}"
+    docker-machine ls --filter name=sw --format "{{.Name}}"
+}
+
+function NB_cleanup_swarm_machines {
+    #docker-machine ls | grep -E "swmaster 
+    #docker-machine rm -f swmaster1 swnode1 swnode2;
+
+    local MACHINES=$(NB_list_swarm_machines)
+
+    [ -z "$MACHINES" ] && return 1
+
+    CMD="docker-machine rm -f $MACHINES"
+    echo $CMD
+    $CMD
+
+    # Check for inaccessible VirtualBox virtual machines:
+    [ $MACHINE_DRIVER = "virtualbox" ] && NB_cleanup_virtualbox_inaccessible_VMs
+}
+
+function NB_cleanup_virtualbox_inaccessible_VMs {
+    for VMID in $(VBoxManage list vms | grep inaccessible | awk '{ print $2; }');do
+        CMD="VBoxManage unregistervm $VMID"
+        echo $CMD
+        $CMD
+    done
+}
+
+function NB_create_swarm_machine {
+    local DRIVER=$1; shift
+    local NODE=$1; shift
+    
+    local CM_START_SECS=$(date +%s)
+        
+    local CMD="docker-machine create -d $DRIVER $NODE"
+    echo "Running command <$CMD> ..."
+    $CMD
+
+    NB_quieter_time_taken $CM_START_SECS
+}
+
+function NB_create_swarm_machine_m1 {
+    NB_create_swarm_machine $MACHINE_DRIVER swmaster1
+}
+
+function NB_create_swarm_machine_1 {
+    NB_create_swarm_machine $MACHINE_DRIVER swnode1
+}
+
+function NB_create_swarm_machine_2 {
+    NB_create_swarm_machine $MACHINE_DRIVER swnode2
+}
+
+function NB_create_swarm_machines {
+    NB_create_swarm_machine_m1
+    NB_create_swarm_machine_m2
+    NB_create_swarm_machine_m3
+}
+
+################################################################################
+#
+
+#NB_start | NB_highlight started <- no longer sets START_SECS (forks a sub-shell for pipe!)
+NB_start
+
+# . /home/mjb/z/bin/DEMOS_TUTORIALS/2017-May-PyconUS/NB_bash_functions.rc
