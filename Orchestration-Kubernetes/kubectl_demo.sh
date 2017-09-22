@@ -35,7 +35,7 @@ SHOW kubectl get           --namespace default pods,deploy,replicaset,service
 echo
 hl "Now we create a new deployment called ${DEMO_NAME}, with $(green ${DEMO_REPLICAS}) replicas (pods)";
 echo
-RUN  kubectl run ${DEMO_NAME} --labels="owner=mike" --port $IPORT --replicas=${DEMO_REPLICAS} --image mjbright/${DEMO_NAME}:${DEMO_V1}
+RUN  kubectl run ${DEMO_NAME} --labels="owner=demouser" --port $IPORT --replicas=${DEMO_REPLICAS} --image mjbright/${DEMO_NAME}:${DEMO_V1}
 
 echo
 hl "Showing current pods, deployments, replicasets ,services"; echo
@@ -54,7 +54,7 @@ show_access_pod_ports
 echo
 echo
 hl "We will now $(green expose) our service so that we can access from another machine"; echo
-RUN  kubectl expose deploy ${DEMO_NAME} --type=$EXPOSE_TYPE --name=mike-${DEMO_NAME}-service --port $EPORT
+RUN  kubectl expose deploy ${DEMO_NAME} --type=$EXPOSE_TYPE --name=${DEMO_NAME}-service --port $EPORT
 #SHOW kubectl get           --namespace default pods,deploy,replicaset,service
 SHOW kubectl get            service
 
@@ -77,7 +77,7 @@ echo
 show_access_ports
 
 #hl "See how we can select items, e.g. pods based on labels"
-#SHOW kubectl get pods --selector "owner=mike" service
+#SHOW kubectl get pods --selector "owner=demouser" service
 
 
 exit 0
