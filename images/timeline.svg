@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="1600"
+   height="1200"
+   id="svg3360"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   viewBox="0 0 1600 1200"
+   sodipodi:docname="timeline.svg">
+  <defs
+     id="defs3362">
+    <marker
+       inkscape:stockid="Arrow1Lend"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="marker4495"
+       style="overflow:visible;"
+       inkscape:isstock="true">
+      <path
+         id="path4497"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1;fill:#000000;fill-opacity:1"
+         transform="scale(0.8) rotate(180) translate(12.5,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Lend"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="Arrow1Lend"
+       style="overflow:visible;"
+       inkscape:isstock="true">
+      <path
+         id="path4179"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1;fill:#000000;fill-opacity:1"
+         transform="scale(0.8) rotate(180) translate(12.5,0)" />
+    </marker>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.68833333"
+     inkscape:cx="739.80871"
+     inkscape:cy="602.25476"
+     inkscape:current-layer="layer1"
+     inkscape:document-units="px"
+     showgrid="false"
+     inkscape:window-width="1920"
+     inkscape:window-height="1016"
+     inkscape:window-x="0"
+     inkscape:window-y="27"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata3365">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     id="layer1"
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer">
+    <path
+       style="fill:#000000;fill-rule:evenodd;stroke:#000000;stroke-width:4.92717552;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker-end:url(#Arrow1Lend);image-rendering:auto"
+       d="m 152.54238,878.93459 c 1357.16392,0 1357.16392,0 1357.16392,0"
+       id="path3370"
+       inkscape:connector-curvature="0.5" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 73.0,925.0 c 0,-79.90313 -1.45279,-79.90313 -1.45279,-79.90313"
+       id="pathtime0"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 170.63377,925.0 c 0,-79.90311 -1.45279,-79.90311 -1.45279,-79.90311"
+       id="path4535-4"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 1268.9389,926.45278 c 0,-79.90311 -1.4528,-79.90311 -1.4528,-79.90311"
+       id="path4535-4-0"
+       inkscape:connector-curvature="0" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="-775.0"
+       y="284.0"
+       id="text4567"
+       sodipodi:linespacing="125%"
+       transform="matrix(0.25881905,-0.96592583,0.96592583,0.25881905,0,0)"><tspan
+         sodipodi:role="line"
+         x="-775.0"
+         y="284.0"
+         id="tspan4575">Unix containers, Unikernels</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:125%;font-family:'Android Emoji';-inkscape-font-specification:'Android Emoji, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="-750.0"
+       y="384.0"
+       id="text4567-9"
+       sodipodi:linespacing="125%"
+       transform="matrix(0.25881905,-0.96592583,0.96592583,0.25881905,0,0)"
+       inkscape:transform-center-x="-37.772397"
+       inkscape:transform-center-y="-110.41162"><tspan
+         sodipodi:role="line"
+         id="tspan4597"
+         x="-750.0"
+         y="384.0">Linux containers (LXC), Mesos</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:125%;font-family:'Android Emoji';-inkscape-font-specification:'Android Emoji, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="-695.44116"
+       y="582.72198"
+       id="text4567-9-5"
+       sodipodi:linespacing="125%"
+       transform="matrix(0.25881905,-0.96592583,0.96592583,0.25881905,0,0)"
+       inkscape:transform-center-x="-37.772397"
+       inkscape:transform-center-y="-110.41162"><tspan
+         sodipodi:role="line"
+         id="tspan5113"
+         x="-695.44116"
+         y="582.72198">LXC ( CloudFoundry, DotCloud PaaS )</tspan></text>
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 488.79358,925.0 c 0,-79.90311 -1.45279,-79.90311 -1.45279,-79.90311"
+       id="path4535-4-0-4"
+       inkscape:connector-curvature="0" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:50px;line-height:125%;font-family:'Android Emoji';-inkscape-font-specification:'Android Emoji, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr;text-anchor:start;fill:#c83737;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;"
+       x="-666.13055"
+       y="698.75195"
+       id="text4567-9-5-9"
+       sodipodi:linespacing="125%"
+       transform="matrix(0.25881905,-0.96592583,0.96592583,0.25881905,0,0)"
+       inkscape:transform-center-x="-37.772397"
+       inkscape:transform-center-y="-110.41162"><tspan
+         sodipodi:role="line"
+         id="tspan4657"
+         x="-666.13055"
+         y="698.75195">Docker</tspan><tspan
+         sodipodi:role="line"
+         id="tspan4659"
+         x="-666.13055"
+         y="748.75195" /></text>
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 690.73062,925.0 c 0,-79.90311 -1.45279,-79.90311 -1.45279,-79.90311"
+       id="path4535-4-0-4-6"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 869.42312,925.0 c 0,-79.90311 -1.45279,-79.90311 -1.45279,-79.90311"
+       id="path4535-4-0-4-6-0"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 1129.4716,925.0 c 0,-79.90311 -1.4528,-79.90311 -1.4528,-79.90311"
+       id="path4535-4-0-4-6-5"
+       inkscape:connector-curvature="0" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:125%;font-family:'Android Emoji';-inkscape-font-specification:'Android Emoji, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="-615.03461"
+       y="909.0885"
+       id="text4567-9-5-9-0"
+       sodipodi:linespacing="125%"
+       transform="matrix(0.25881905,-0.96592583,0.96592583,0.25881905,0,0)"
+       inkscape:transform-center-x="-37.772397"
+       inkscape:transform-center-y="-110.41162"><tspan
+         sodipodi:role="line"
+         id="tspan4657-2"
+         x="-615.03461"
+         y="909.0885">Container Orchestration Options</tspan><tspan
+         sodipodi:role="line"
+         id="tspan4659-9"
+         x="-615.03461"
+         y="959.0885" /></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:125%;font-family:'Android Emoji';-inkscape-font-specification:'Android Emoji, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;"
+       x="-564.3371"
+       y="1078.0024"
+       id="text4567-9-5-9-0-4"
+       sodipodi:linespacing="125%"
+       transform="matrix(0.25881905,-0.96592583,0.96592583,0.25881905,0,0)"
+       inkscape:transform-center-x="-37.772397"
+       inkscape:transform-center-y="-110.41162"><tspan
+         sodipodi:role="line"
+         id="tspan5311">PaaS adoptions of Docker</tspan><tspan
+         sodipodi:role="line"
+         id="tspan5313" /></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:125%;font-family:'Android Emoji';-inkscape-font-specification:'Android Emoji, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="-475.26685"
+       y="1440.7842"
+       id="text4567-9-5-9-0-4-1"
+       sodipodi:linespacing="125%"
+       transform="matrix(0.25881905,-0.96592583,0.96592583,0.25881905,0,0)"
+       inkscape:transform-center-x="-37.772397"
+       inkscape:transform-center-y="-110.41162"><tspan
+         sodipodi:role="line"
+         id="tspan4946"
+         x="-475.26685"
+         y="1440.7842"> Docker buys Unikernel Systems, releases &quot;Swarm mode&quot; ...</tspan><tspan
+         sodipodi:role="line"
+         id="tspan4948"
+         x="-475.26685"
+         y="1490.7842" > Kubernetes CRI-O project ...</tspan><tspan
+         sodipodi:role="line"
+         id="tspan4950"
+         x="-475.26685"
+         y="1540.7842" /></text>
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 368.21246,925.0 c 0,-79.90311 -1.45279,-79.90311 -1.45279,-79.90311"
+       id="path4535-4-0-8"
+       inkscape:connector-curvature="0" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:125%;font-family:'Android Emoji';-inkscape-font-specification:'Android Emoji, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="-643.23517"
+       y="803.84241"
+       id="text4567-9-5-9-09"
+       sodipodi:linespacing="125%"
+       transform="matrix(0.25881905,-0.96592583,0.96592583,0.25881905,0,0)"
+       inkscape:transform-center-x="-37.772397"
+       inkscape:transform-center-y="-110.41162"><tspan
+         sodipodi:role="line"
+         id="tspan5294"
+         x="-643.23517"
+         y="803.84241">Container-OSes, Rkt, LXD</tspan></text>
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 590.4885,925.0 c 0,-79.90311 -1.45279,-79.90311 -1.45279,-79.90311"
+       id="path4535-4-0-4-3"
+       inkscape:connector-curvature="0" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:125%;font-family:'Android Emoji';-inkscape-font-specification:'Android Emoji, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;"
+       x="-498.73709"
+       y="1311.5985"
+       id="text4567-9-5-9-0-2"
+       sodipodi:linespacing="125%"
+       transform="matrix(0.25881905,-0.96592583,0.96592583,0.25881905,0,0)"
+       inkscape:transform-center-x="-37.772397"
+       inkscape:transform-center-y="-110.41162"><tspan
+         sodipodi:role="line"
+         id="tspan5336"></tspan><tspan
+         sodipodi:role="line"
+         id="tspan5338" /><tspan
+         sodipodi:role="line"
+         id="tspan5340" /></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:125%;font-family:'Android Emoji';-inkscape-font-specification:'Android Emoji, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="94.431"
+       y="978.0"
+       id="text5342"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan5964"
+         x="94.431"
+         y="978.0">... 2009</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:'Android Emoji';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;-inkscape-font-specification:'Android Emoji, Normal';font-stretch:normal;font-variant:normal;text-anchor:start;text-align:start;writing-mode:lr;"
+       x="486.46582"
+       y="978.0"
+       id="text5342-7"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan5364">2013</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:125%;font-family:'Android Emoji';-inkscape-font-specification:'Android Emoji, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;"
+       x="668.05579"
+       y="978.0"
+       id="text5342-7-2"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan5384">2014</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:125%;font-family:'Android Emoji';-inkscape-font-specification:'Android Emoji, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;"
+       x="1225.1342"
+       y="978.0"
+       id="text5342-7-2-0"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan5424">2016 ...</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:125%;font-family:'Android Emoji';-inkscape-font-specification:'Android Emoji, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="1045.7017"
+       y="978.0"
+       id="text5342-7-2-0-1"
+       sodipodi:linespacing="125%"
+       inkscape:transform-center-x="123.48668"
+       inkscape:transform-center-y="1.4527845"><tspan
+         y="978.95557"
+         x="1045.7017"
+         sodipodi:role="line"
+         id="tspan5404-7">2015</tspan></text>
+  </g>
+</svg>

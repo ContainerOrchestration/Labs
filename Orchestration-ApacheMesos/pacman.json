@@ -1,0 +1,16 @@
+{
+  "id": "pacman",
+  "cpus": 0.1,
+  "mem": 64.0,
+  "instances": 2,
+  "container": {
+    "type": "DOCKER",
+    "docker": {
+      "image": "emilevauge/pacman",
+      "network": "BRIDGE",
+      "portMappings": [
+        { "containerPort": 80, "hostPort": 0, "protocol": "tcp" }
+      ]
+    }
+  }
+}
