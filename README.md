@@ -1,8 +1,18 @@
 # TO BE COMPLETED PRIOR TO PYCONUS 2018, Cleveland
 
+Setup will be simplified for 2018 sessions.
+
+<a name="KUBE" />
+
+#### SETUP FOR Kubernetes Tutorial
+
+<a name="CO" />
+
+#### SETUP FOR Container Orchestration Tutorial
+
 The following are the setup information from PyConUS 2017.
 
-Setup will be simplified for 2018 sessions.
+<hr/>
 
 # ContainerOrchestration Lab Setup
 
