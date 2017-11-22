@@ -1,3 +1,9 @@
+# TO BE COMPLETED PRIOR TO PYCONUS 2018, Cleveland
+
+The following are the setup information from PyConUS 2017.
+
+Setup will be simplified for 2018 sessions.
+
 # ContainerOrchestration Lab Setup
 
 This document describes what you need to do to follow these labs
