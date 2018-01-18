@@ -1,6 +1,6 @@
 
 
-## Kubernetes Lab
+# Kubernetes Lab
 
 This lab is presented in several sections
 
@@ -11,4 +11,12 @@ This lab is presented in several sections
 4. [Exposing Services](4.services.ipynb)
 5. [Maintenance Operations](5.maintenance.ipynb)
 6. [Tools](6.tools.ipynb)
+
+## Contributions
+
+Your contributions to this tutorial are welcome, either via
+
+- Opening issues on github at [ContainerOrchestration/Labs](https://github.com/ContainerOrchestration/Labs)
+- Submitting PRs
+- tweets to @mjbright
 
