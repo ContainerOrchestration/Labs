@@ -1,4 +1,4 @@
-# TO BE COMPLETED PRIOR TO PYCONUS 2018, Cleveland
+# TO BE COMPLETED PRIOR TO DevConfUS 2018, Boston
 
 Setup will be simplified for 2018 sessions.
 
@@ -8,16 +8,8 @@ Setup will be simplified for 2018 sessions.
 
 <a name="CO" />
 
-#### SETUP FOR Container Orchestration Tutorial
-
-The following are the setup information from PyConUS 2017.
-
-<hr/>
-
-# ContainerOrchestration Lab Setup
-
 This document describes what you need to do to follow these labs
-(Updated for PyConUS 2017, Portland, May 2017).
+(Updated for DevConfUS 2018, Boston, Aug 2018).
 
 ## Before starting the lab ... a <font color="#ff4444"> little Survey please </font>
 
