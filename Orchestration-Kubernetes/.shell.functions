@@ -1,0 +1,133 @@
+
+echo "Loading bash helper functions, new functions added:"
+#"[$BASH_SOURCE]"
+
+mkdir -p ~/tmp/
+
+typeset +f | grep " ()" | sed 's/ ()//' | sort > ~/tmp/fns.before
+
+#
+# checkState TYPE NAME DESIRED
+#
+# description: Used to check state of kubernetes entity (useful to wait for conditions)
+#
+# example:
+#    checkState pod k8s-demo Running
+#
+# returns:
+#    0: If in desired state
+#    1: If not
+#
+checkState() {
+    TYPE=$1; shift
+    NAME=$1; shift
+    DESIRED=$1; shift
+    
+    QUIET="-q"
+    [ ! -z "$1" ] && QUIET=""
+    
+    kubectl get $TYPE | grep $NAME | grep $QUIET $DESIRED && return 0
+    
+    return 1
+}
+# set -x; checkState pod k8s-demo Running ; echo $?
+
+#
+# checkPresent TYPE NAME DESIRED
+#
+# description: Used to check presence of kubernetes entity (useful to wait for conditions)
+#
+# example:
+#    checkPresent pod k8s-demo
+#
+# returns:
+#    0: If present
+#    1: If not
+#
+checkPresent() {
+    TYPE=$1; shift
+    NAME=$1; shift
+    
+    QUIET="-q"
+    [ ! -z "$1" ] && QUIET=""
+    
+    kubectl get $TYPE | grep $NAME && return 0
+    
+    return 1
+}
+# set -x; checkPresent pod k8s-demo ; echo $?
+
+untilState() {
+    TYPE=$1; shift
+    NAME=$1; shift
+    DESIRED=$1; shift
+    
+    QUIET="-q"
+    [ ! -z "$1" ] && QUIET="-v"
+    
+    SLEEP=4
+    while ! checkState $TYPE $NAME $DESIRED $QUIET; do
+        sleep $SLEEP
+    done
+}
+# set -x; untilstate pod k8s-demo Running
+
+untilNotState() {
+    TYPE=$1; shift
+    NAME=$1; shift
+    DESIRED=$1; shift
+    
+    QUIET="-q"
+    [ ! -z "$1" ] && QUIET="-v"
+    
+    SLEEP=4
+    while checkState $TYPE $NAME $DESIRED $QUIET; do
+        sleep $SLEEP
+    done
+}
+# set -x; untilNotState pod k8s-demo Terminating
+
+untilPresent() {
+    TYPE=$1; shift
+    NAME=$1; shift
+    
+    QUIET="-q"
+    [ ! -z "$1" ] && QUIET="-v"
+    
+    SLEEP=4
+    while ! checkPresent $TYPE $NAME $QUIET; do
+        sleep $SLEEP
+    done
+}
+# set -x; untilPresent pod k8s-demo
+
+untilNotPresent() {
+    TYPE=$1; shift
+    NAME=$1; shift
+    
+    QUIET="-q"
+    [ ! -z "$1" ] && QUIET="-v"
+    
+    SLEEP=4
+    while checkPresent $TYPE $NAME $QUIET; do
+        sleep $SLEEP
+    done
+}
+# set -x; untilNotPresent pod k8s-demo
+
+#
+# cont
+#
+# description: Used to continue notebook execution despite non-zero return code of previous command
+#
+cont() {
+    return 0
+}
+
+set +x
+
+typeset +f | grep " ()" | sed 's/ ()//' | sort > ~/tmp/fns.after
+
+diff ~/tmp/fns.before ~/tmp/fns.after | grep "^> " | sed 's/^> /-- /'
+
+
