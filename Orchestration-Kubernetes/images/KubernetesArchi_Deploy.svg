@@ -16,7 +16,7 @@
    id="svg11922"
    version="1.1"
    inkscape:version="0.92.2 (5c3e80d, 2017-08-06)"
-   sodipodi:docname="KubernetesArchi_Pod.svg">
+   sodipodi:docname="KubernetesArchi_Deploy.svg">
   <defs
      id="defs11924">
     <marker
@@ -44,7 +44,7 @@
        inkscape:stockid="Arrow1Lend">
       <path
          transform="matrix(-0.8,0,0,-0.8,-10,0)"
-         style="fill:#c500c4;fill-opacity:1;fill-rule:evenodd;stroke:#c500c4;stroke-width:1.00000003pt;stroke-opacity:1"
+         style="fill:#0000fa;fill-opacity:1;fill-rule:evenodd;stroke:#0000fa;stroke-width:1.00000003pt;stroke-opacity:1"
          d="M 0,0 5,-5 -12.5,0 5,5 Z"
          id="path310256"
          inkscape:connector-curvature="0" />
@@ -3192,7 +3192,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.78494092"
-     inkscape:cx="255.21714"
+     inkscape:cx="346.84432"
      inkscape:cy="139.61535"
      inkscape:current-layer="layer1"
      id="namedview11926"
@@ -3201,7 +3201,8 @@
      inkscape:window-height="1016"
      inkscape:window-x="0"
      inkscape:window-y="27"
-     inkscape:window-maximized="1" />
+     inkscape:window-maximized="1"
+     inkscape:snap-nodes="false" />
   <metadata
      id="metadata11928">
     <rdf:RDF>
@@ -3210,7 +3211,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -3251,174 +3252,150 @@
          x="160.3761"
          y="22.824203"
          style="font-size:11.28888893px;line-height:1.25"> </tspan></text>
-    <g
-       transform="translate(75.48142,-0.12754256)"
-       id="g31953-0"
-       style="fill:#80e5ff;fill-opacity:0.61064429">
-      <rect
-         y="71.239647"
-         x="23.784512"
-         height="12.430976"
-         width="69.689316"
-         id="rect28951-4-5"
-         style="opacity:0.93000034;fill:#80e5ff;fill-opacity:0.61064429;fill-rule:nonzero;stroke:#030303;stroke-width:0.2724131;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:2.04094481;stroke-opacity:0.99439775" />
-      <text
-         id="text29217-9"
-         y="81.032524"
-         x="30.845036"
-         style="font-style:normal;font-weight:normal;line-height:0%;font-family:sans-serif;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#80e5ff;fill-opacity:0.61064429;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-         xml:space="preserve"><tspan
-           y="81.032524"
-           x="30.845036"
-           id="tspan31949-2"
-           sodipodi:role="line"
-           style="font-size:11.28888893px;line-height:1.25;fill:#0000d4">Container</tspan><tspan
-           y="95.143639"
-           x="30.845036"
-           id="tspan31951-6"
-           sodipodi:role="line"
-           style="font-size:11.28888893px;line-height:1.25;fill:#80e5ff"> </tspan></text>
-    </g>
-    <g
-       transform="translate(149.54786,-0.12753983)"
-       id="g31953-8"
-       style="fill:#eb5271;fill-opacity:0.61064429">
-      <rect
-         style="opacity:0.93000034;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:#007400;stroke-width:0.5;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:2.04094481;stroke-opacity:1"
-         id="rect32000"
-         width="222.9184"
-         height="3.595458"
-         x="-111.79555"
-         y="110.53334" />
-      <text
-         xml:space="preserve"
-         style="font-style:normal;font-weight:normal;line-height:0%;font-family:sans-serif;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-         x="-37.010025"
-         y="125.63427"
-         id="text32005"><tspan
-           sodipodi:role="line"
-           id="tspan32011"
-           x="-37.010025"
-           y="125.63427"
-           style="font-size:11.28888893px;line-height:1.25">same ip, e.g. 192.168.1.20</tspan></text>
-      <rect
-         style="opacity:0.93000034;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:#007400;stroke-width:0.5;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:2.04094481;stroke-opacity:1"
-         id="rect32013"
-         width="3.2359123"
-         height="29.123211"
-         x="-93.099167"
-         y="82.84832" />
-      <rect
-         style="opacity:0.93000034;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:#007400;stroke-width:0.5;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:2.04094481;stroke-opacity:1"
-         id="rect32013-4"
-         width="3.2359123"
-         height="29.123211"
-         x="-24.965235"
-         y="83.028099" />
-      <rect
-         style="opacity:0.93000034;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:#007400;stroke-width:0.5;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:2.04094481;stroke-opacity:1"
-         id="rect32013-4-4"
-         width="3.2359123"
-         height="29.123211"
-         x="48.382111"
-         y="82.668549" />
-    </g>
     <rect
-       style="opacity:0.93000034;fill:#fcfafa;fill-opacity:0.98039216;fill-rule:nonzero;stroke:#0000ff;stroke-width:0.58162743;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:2.04094481;stroke-opacity:1"
+       style="opacity:0.93000034;fill:#ffe680;fill-opacity:0.98039216;fill-rule:nonzero;stroke:#0000ff;stroke-width:0.31417996;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:2.04094481;stroke-opacity:1"
        id="rect32047"
-       width="246.20724"
-       height="39.108868"
-       x="24.849474"
-       y="24.515173" />
+       width="146.70073"
+       height="19.151863"
+       x="22.415998"
+       y="30.747631" />
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;line-height:0%;font-family:sans-serif;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="38.471401"
-       y="39.21574"
-       id="text32049"><tspan
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="23.914322"
+       y="42.851387"
+       id="text27876"><tspan
          sodipodi:role="line"
-         id="tspan12518"
-         x="38.471401"
-         y="39.21574"
-         style="font-size:11.28888893px;line-height:1.25;fill:#0000ff;fill-opacity:1">Containers share some namespaces: </tspan><tspan
-         sodipodi:role="line"
-         id="tspan12520"
-         x="38.471401"
-         y="53.326851"
-         style="font-size:11.28888893px;line-height:1.25;fill:#0000ff;fill-opacity:1">    - PID, IPC, network , time sharing</tspan></text>
+         id="tspan27874"
+         x="23.914322"
+         y="42.851387"
+         style="font-size:8.46666622px;stroke-width:0.26458332">kubectl run apache:2 --replicas=2</tspan></text>
     <rect
-       style="opacity:0.93000034;fill:#ffffff;fill-opacity:0.61176471;fill-rule:nonzero;stroke:#0000ff;stroke-width:0.45021409;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:2.04094481;stroke-opacity:1"
-       id="rect32047-2"
-       width="246.33865"
-       height="23.420265"
-       x="27.839912"
-       y="132.49298" />
+       style="opacity:0.93000034;fill:#fcfafa;fill-opacity:0.98039216;fill-rule:nonzero;stroke:#0000ff;stroke-width:0.27452445;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:2.04094481;stroke-opacity:1"
+       id="rect32047-3"
+       width="68.610405"
+       height="31.264997"
+       x="203.96921"
+       y="24.185221" />
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;line-height:0%;font-family:sans-serif;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="39.550037"
-       y="147.43903"
-       id="text12522"><tspan
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="206.79778"
+       y="40.987034"
+       id="text27880-2"><tspan
          sodipodi:role="line"
-         id="tspan12526"
-         x="39.550037"
-         y="147.43903"
-         style="font-size:11.28888893px;line-height:1.25;fill:#0000ff;fill-opacity:1">A pod houses one or more containers</tspan></text>
-    <g
-       transform="translate(-1.6636259,-0.20051158)"
-       id="g31953-0-3"
-       style="fill:#80e5ff;fill-opacity:0.61064429">
-      <rect
-         y="71.239647"
-         x="23.784512"
-         height="12.430976"
-         width="69.689316"
-         id="rect28951-4-5-6"
-         style="opacity:0.93000034;fill:#80e5ff;fill-opacity:0.61064429;fill-rule:nonzero;stroke:#030303;stroke-width:0.2724131;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:2.04094481;stroke-opacity:0.99439775" />
-      <text
-         id="text29217-9-0"
-         y="81.032524"
-         x="30.845036"
-         style="font-style:normal;font-weight:normal;line-height:0%;font-family:sans-serif;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#80e5ff;fill-opacity:0.61064429;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-         xml:space="preserve"><tspan
-           y="81.032524"
-           x="30.845036"
-           id="tspan31949-2-6"
-           sodipodi:role="line"
-           style="font-size:11.28888893px;line-height:1.25;fill:#0000d4">Container</tspan><tspan
-           y="95.143639"
-           x="30.845036"
-           id="tspan31951-6-2"
-           sodipodi:role="line"
-           style="font-size:11.28888893px;line-height:1.25;fill:#80e5ff"> </tspan></text>
-    </g>
-    <g
-       transform="translate(152.37928,-0.87465989)"
-       id="g31953-0-3-6"
-       style="fill:#80e5ff;fill-opacity:0.61064429">
-      <rect
-         y="71.239647"
-         x="23.784512"
-         height="12.430976"
-         width="69.689316"
-         id="rect28951-4-5-6-1"
-         style="opacity:0.93000034;fill:#80e5ff;fill-opacity:0.61064429;fill-rule:nonzero;stroke:#030303;stroke-width:0.2724131;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:2.04094481;stroke-opacity:0.99439775" />
-      <text
-         id="text29217-9-0-8"
-         y="81.032524"
-         x="30.845036"
-         style="font-style:normal;font-weight:normal;line-height:0%;font-family:sans-serif;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#80e5ff;fill-opacity:0.61064429;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-         xml:space="preserve"><tspan
-           y="81.032524"
-           x="30.845036"
-           id="tspan31949-2-6-7"
-           sodipodi:role="line"
-           style="font-size:11.28888893px;line-height:1.25;fill:#0000d4">Container</tspan><tspan
-           y="95.143639"
-           x="30.845036"
-           id="tspan31951-6-2-9"
-           sodipodi:role="line"
-           style="font-size:11.28888893px;line-height:1.25;fill:#80e5ff"> </tspan></text>
-    </g>
+         id="tspan27878-0"
+         x="206.79778"
+         y="40.987034"
+         style="stroke-width:0.26458332">deployment</tspan></text>
+    <rect
+       style="opacity:0.93000034;fill:#fcfafa;fill-opacity:0.98039216;fill-rule:nonzero;stroke:#0000ff;stroke-width:0.27452445;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:2.04094481;stroke-opacity:1"
+       id="rect32047-3-1"
+       width="68.610405"
+       height="31.264999"
+       x="170.328"
+       y="68.341942" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="175.9059"
+       y="87.635139"
+       id="text27932"><tspan
+         sodipodi:role="line"
+         id="tspan27930"
+         x="175.9059"
+         y="87.635139"
+         style="stroke-width:0.26458332">ReplicaSet</tspan></text>
+    <rect
+       style="opacity:0.93000034;fill:#fcfafa;fill-opacity:0.98039216;fill-rule:nonzero;stroke:#0000ff;stroke-width:0.27452445;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:2.04094481;stroke-opacity:1"
+       id="rect32047-3-1-5"
+       width="68.610405"
+       height="31.265001"
+       x="210.58112"
+       y="122.27381" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="213.65822"
+       y="135.1626"
+       id="text27932-5"><tspan
+         sodipodi:role="line"
+         id="tspan27930-4"
+         x="213.65822"
+         y="135.1626"
+         style="stroke-width:0.26458332">Pod2</tspan></text>
+    <rect
+       style="fill:#ffe680;fill-opacity:1;stroke:#0000f6;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect27955"
+       width="63.032867"
+       height="11.797607"
+       x="213.39713"
+       y="139.73297" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.46666622px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="213.06006"
+       y="150.04099"
+       id="text27959"><tspan
+         sodipodi:role="line"
+         id="tspan27957"
+         x="213.06006"
+         y="150.04099"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.46666622px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;stroke-width:0.26458332">1f3d: apache:2</tspan></text>
+    <rect
+       style="opacity:0.93000034;fill:#fcfafa;fill-opacity:0.98039216;fill-rule:nonzero;stroke:#0000ff;stroke-width:0.29434505;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:2.04094481;stroke-opacity:1"
+       id="rect32047-3-1-5-7"
+       width="78.875359"
+       height="31.265003"
+       x="128.53081"
+       y="122.27381" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="134.78285"
+       y="135.1626"
+       id="text27932-5-6"><tspan
+         sodipodi:role="line"
+         id="tspan27930-4-5"
+         x="134.78285"
+         y="135.1626"
+         style="stroke-width:0.26458332">Pod1</tspan></text>
+    <rect
+       style="fill:#ffe680;fill-opacity:1;stroke:#0000f6;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect27955-6"
+       width="67.077759"
+       height="11.797607"
+       x="134.52176"
+       y="139.73297" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.46666622px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="135.14767"
+       y="149.29086"
+       id="text27959-9"><tspan
+         sodipodi:role="line"
+         id="tspan28003"
+         x="135.14767"
+         y="149.29086">2e76: apache:2</tspan></text>
+    <path
+       style="fill:none;stroke:#0000fa;stroke-width:0.66500002;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:12;stroke-dasharray:2.66000019, 2.66000019;stroke-dashoffset:0;stroke-opacity:1;marker-end:url(#marker310254)"
+       d="m 171.59993,39.817718 h 29.32546"
+       id="path28007"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;stroke:#0000fc;stroke-width:1.17186666;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 195.42427,100.29148 c -28.47856,20.75694 -28.47856,21.33353 -28.47856,21.33353"
+       id="path30964"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;stroke:#0000fc;stroke-width:0.96499997;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 235.53198,53.494369 C 204.34016,65.629041 204.39131,65.966115 204.39131,65.966115"
+       id="path30964-6"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;stroke:#0000fc;stroke-width:1.17186666;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 225.5459,100.29356 c 27.10433,22.52185 27.66333,22.38052 27.66333,22.38052"
+       id="path30964-1"
+       inkscape:connector-curvature="0" />
   </g>
 </svg>
