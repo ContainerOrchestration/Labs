@@ -4,6 +4,25 @@ echo "Loading bash helper functions, new functions added:"
 
 mkdir -p ~/tmp/
 
+# FUNCTIONS FOR docker access to NODES: ----------------------------------------------------------------------------
+# FUNCTIONS FOR MASTER:
+# USAGE:
+#    mdocker ps
+#    m docker ps (or other commands within "kube-master" host
+#
+function mdocker { docker exec -it $(docker ps | grep kube-master | awk '{ print $1; exit(0); }') docker $*; }
+function master  { docker exec -it $(docker ps | grep kube-master | awk '{ print $1; exit(0); }') $*; }
+
+# FUNCTIONS FOR worker-node-1:
+function w1docker { docker exec -it $(docker ps | grep kube-node-1 | awk '{ print $1; exit(0); }') docker $*; }
+function worker1  { docker exec -it $(docker ps | grep kube-node-1 | awk '{ print $1; exit(0); }') $*; }
+
+# FUNCTIONS FOR worker-node-2:
+function w2docker { docker exec -it $(docker ps | grep kube-node-2 | awk '{ print $1; exit(0); }') docker $*; }
+function worker2  { docker exec -it $(docker ps | grep kube-node-2 | awk '{ print $1; exit(0); }') $*; }
+# ------------------------------------------------------------------------------------------------------------------
+
+
 typeset +f | grep " ()" | sed 's/ ()//' | sort > ~/tmp/fns.before
 
 #
