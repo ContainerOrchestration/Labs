@@ -3191,9 +3191,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.78494092"
-     inkscape:cx="-85.035324"
-     inkscape:cy="107.12887"
+     inkscape:zoom="1.7226737"
+     inkscape:cx="388.81731"
+     inkscape:cy="222.51576"
      inkscape:current-layer="layer1"
      id="namedview11926"
      showgrid="false"
@@ -3473,9 +3473,44 @@
        id="path30964-1-8"
        inkscape:connector-curvature="0" />
     <path
-       style="fill:#8d5fd3;stroke:#c800fc;stroke-width:0.91099999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:2.73299997,0.91099999;stroke-opacity:1;stroke-dashoffset:0"
+       style="fill:#8d5fd3;stroke:#c800fc;stroke-width:0.91100001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:2.73299997, 0.91099999;stroke-dashoffset:0;stroke-opacity:1"
        d="M 183.43516,58.351695 C 161.66468,75.313671 161.78647,75.674311 161.78647,75.674311"
        id="path30964-1-8-3"
        inkscape:connector-curvature="0" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="159.60432"
+       y="71.086998"
+       id="text35966"><tspan
+         sodipodi:role="line"
+         id="tspan35964"
+         x="159.60432"
+         y="80.450768"
+         style="stroke-width:0.26458332" /></text>
+    <g
+       id="g35975">
+      <ellipse
+         inkscape:transform-center-y="-4.2517216"
+         inkscape:transform-center-x="1.2447387"
+         transform="rotate(-88.727893)"
+         ry="11.058391"
+         rx="6.5275226"
+         cy="165.18707"
+         cx="-67.024261"
+         id="path35962"
+         style="fill:#e5d5ff;fill-opacity:1;stroke:#c800fc;stroke-width:0.91099995;stroke-miterlimit:4;stroke-dasharray:2.73299993, 0.91099998;stroke-dashoffset:0;stroke-opacity:1" />
+      <text
+         id="text35970"
+         y="71.701347"
+         x="154.84306"
+         style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         xml:space="preserve"><tspan
+           style="font-size:5.64444447px;stroke-width:0.26458332"
+           y="71.701347"
+           x="154.84306"
+           id="tspan35968"
+           sodipodi:role="line">IP:port</tspan></text>
+    </g>
   </g>
 </svg>
