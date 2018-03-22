@@ -8,4 +8,5 @@ for NB in Kubernetes.ipynb 1.Concepts.ipynb 2.kubectl_basics.ipynb 3.pods.ipynb 
 done
 
 mv *.html html/
+rsync -av images/ html/images/
 
