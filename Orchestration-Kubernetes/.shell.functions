@@ -1,5 +1,8 @@
 
-echo "Loading bash helper functions, new functions added:"
+[ "$1" = "-v" ] &&
+    echo "Loading bash helper functions, new functions added:"
+#echo "<OPTS: $*>"
+
 #"[$BASH_SOURCE]"
 
 mkdir -p ~/tmp/
@@ -143,10 +146,35 @@ cont() {
     return 0
 }
 
+function WAIT_NO_PODS {
+    #while kubectl get pods | grep -v ^NAME | grep -q po/; do echo SLEEP; echo "."; sleep 2; done
+    while kubectl get pods --no-headers | grep -q po/; do echo SLEEP; echo "."; sleep 2; done
+}
+
+function __CLEANUP {
+    checkPresent pod    2-containers-in-a-pod &&
+        kubectl delete po/2-containers-in-a-pod
+    checkPresent deploy k8s-demo              &&
+        kubectl delete deploy k8s-demo
+    checkPresent svc    k8s-demo              &&
+        kubectl delete service k8s-demo-service
+    WAIT_NO_PODS
+}
+
+function CLEANUP {
+    if [ "$1" = "-v" ];then
+        __CLEANUP 
+    else
+        __CLEANUP  >/dev/null 2>&1
+    fi
+}
+
 set +x
 
 typeset +f | grep " ()" | sed 's/ ()//' | sort > ~/tmp/fns.after
 
-diff ~/tmp/fns.before ~/tmp/fns.after | grep "^> " | sed 's/^> /-- /'
+[ "$1" = "-v" ] &&
+    diff ~/tmp/fns.before ~/tmp/fns.after | grep "^> " | sed 's/^> /-- /'
 
+return 0
 
