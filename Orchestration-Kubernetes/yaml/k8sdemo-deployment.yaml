@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    run: k8sdemo
+  name: k8sdemo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: k8sdemo
+  template:
+    metadata:
+      labels:
+        run: k8sdemo
+    spec:
+      containers:
+      - image: k8sdemo:v1
+        name: k8sdemo
+        ports:
+        - containerPort: 8080

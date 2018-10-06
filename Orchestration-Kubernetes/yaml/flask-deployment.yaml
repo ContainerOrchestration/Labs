@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    run: flask-app
+  name: flask-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: flask-app
+  template:
+    metadata:
+      labels:
+        run: flask-app
+    spec:
+      containers:
+      - image: mjbright/flask-web:v1
+        name: flask-app
+        ports:
+        - containerPort: 5000
