@@ -3,8 +3,6 @@
 This document describes what you need to do to follow these labs
 (Updated for PyConUS 2017, Portland, May 2017).
 
-## Before starting the lab ... a <font color="#ff4444"> little Survey please </font>
-
 Once you're ready to come to the tutorial - meaning that either
 - you decided what environment/mix of environments you'll use
 - you don't know (no problem, we can advise)
@@ -13,9 +11,6 @@ to run different parts of the lab, please respond to the following anonymous sur
 
 This will help us to help you during the lab, to know what are your expectations, your experience and what environment you choose to use or if
 you don't know what to choose.
-
-Thanks to fill out the 
-<b> <a href="https://fr.surveymonkey.com/r/6DCVNNF"> <div class="hi_red" > Survey here </div> </a> </b>
 
 
 ## Pre-requisites
