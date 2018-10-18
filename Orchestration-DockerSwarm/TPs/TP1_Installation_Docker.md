@@ -1,4 +1,4 @@
-# Docker Installation
+# TP1: Docker Installation
 
 In this section we'll look at installing Docker either on
 - [CentOS](#install_d_centos) using the Docker provided yum repo
