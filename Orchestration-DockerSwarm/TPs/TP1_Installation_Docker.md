@@ -216,3 +216,6 @@ For more examples and ideas, visit:
 Not an amazing demo, but then we did just pull some code across half the world to execute on our machine ... not bad !
 
 We'll look at this in more detail later.
+
+**NOTE**: That we ran exactly the same ```docker run``` command both on CentOS and on Windows.  In fact they run the same image which is intended for x86_64 Linux systems.  The Docker we run on Windows runs Linux containers under Hyper-V within a Linux Virtual Machine.  Note that Docker for Windows can also run Windows containers.
+
