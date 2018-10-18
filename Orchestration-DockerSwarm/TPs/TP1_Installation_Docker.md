@@ -161,6 +161,60 @@ For the moment we are interested in the Docker Engine only, but we will see some
 
 # Performing some basic Docker commands
 
+Let's first see what version of Docker we are running.
+
+```sh
+docker version
+```
+
+On CentOS you should see output like:
+```
+Client:
+ Version:           18.06.1-ce
+ API version:       1.38
+ Go version:        go1.10.3
+ Git commit:        e68fc7a
+ Built:             Tue Aug 21 17:25:02 2018
+ OS/Arch:           linux/amd64
+ Experimental:      false
+
+Server:
+ Engine:
+  Version:          18.06.1-ce
+  API version:      1.38 (minimum version 1.12)
+  Go version:       go1.10.3
+  Git commit:       e68fc7a
+  Built:            Tue Aug 21 17:26:30 2018
+  OS/Arch:          linux/amd64
+  Experimental:     false
+```
+
+On Windows you should see output like:
+```
+ docker versionrc/git/GIT_ContainerOrchestration/Labs/Orchestration-DockerSwarm/TPs
+Client:
+ Version:           18.06.1-ce
+ API version:       1.38
+ Go version:        go1.10.3
+ Git commit:        e68fc7a
+ Built:             Tue Aug 21 17:21:34 2018
+ OS/Arch:           windows/amd64
+ Experimental:      false
+
+Server:
+ Engine:
+  Version:          18.06.1-ce
+  API version:      1.38 (minimum version 1.12)
+  Go version:       go1.10.3
+  Git commit:       e68fc7a
+  Built:            Tue Aug 21 17:29:02 2018
+  OS/Arch:          linux/amd64
+  Experimental:     false
+  ```
+  
+**Question**: What difference do you notice?
+
+
 Let's check that we can search for images available
 ```sh
 docker search hello-world
