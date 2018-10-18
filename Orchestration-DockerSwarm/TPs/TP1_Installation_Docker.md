@@ -152,9 +152,9 @@ Once started you will be invited to enter your DockerID
 
 Now that Docker is running, right-click on the Docker icon and select 'About Docker' to see what has been installed.
 
-![](images/DockerDesktop_install_7.png)
+![](images/DockerDesktop_install_8.png)
 
-
+For the moment we are interested in the Docker Engine only, but we will see some of the other components later.
 
 
 <div id="example">
