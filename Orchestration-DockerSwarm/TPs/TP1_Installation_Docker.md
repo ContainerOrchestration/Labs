@@ -1,5 +1,13 @@
 # Docker Installation
 
+In this section we'll look at installing Docker either on
+- [CentOS](#install_d_centos) using the Docker provided yum repo
+- [Windows10](#install_dd_windows) using the Docker Desktop application
+
+And then we'll run a quick [#example](#example) to test our installation.
+
+<div id="install_d_centos">
+
 # On CentOS
 
 We will look at installing the latest stable Docker Community Edition version on CentOS 7.x.
@@ -96,6 +104,8 @@ docker version
 ```
 
 Now skip to the [#example](#example) below to run a few simple Docker commands
+
+<div id="install_dd_windows">
 
 # On Docker Desktop for Windows
 
