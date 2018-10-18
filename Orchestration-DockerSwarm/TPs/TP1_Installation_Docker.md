@@ -109,6 +109,54 @@ Now skip to the [#example](#example) below to run a few simple Docker commands
 
 # On Docker Desktop for Windows
 
+## Download Docker Desktop for Windows
+
+Download from https://www.docker.com/products/docker-desktop
+![](images/DockerDesktop_download.png)
+
+Click on the "Download for Windows" button.
+
+![](images/DockerDesktop_download_2.png)
+
+On the following page, click on the "Get Docker" button.
+
+![](images/DockerDesktop_download_3.png)
+
+Once downloaded click on the "Docker for Windows Installer.exe" executable which you downloaded.
+
+![](images/DockerDesktop_install_1.png)
+
+Choose the defaults
+
+![](images/DockerDesktop_install_2.png)
+
+The installation takes 1 or 2 minutes
+
+![](images/DockerDesktop_install_3.png)
+
+![](images/DockerDesktop_install_4.png)
+
+Once installed, select Docker and double-click to start
+
+![](images/DockerDesktop_install_5.png)
+
+You should now see the Docker icon, animated, in the task bar as it starts up.
+
+![](images/DockerDesktop_install_6.png)
+
+Once started you will be invited to enter your DockerID
+
+(If you don't have one, create one for free on https://cloud.docker.com)
+
+![](images/DockerDesktop_install_7.png)
+
+Now that Docker is running, right-click on the Docker icon and select 'About Docker' to see what has been installed.
+
+![](images/DockerDesktop_install_7.png)
+
+
+
+
 <div id="example">
 
 # Performing some basic Docker commands
