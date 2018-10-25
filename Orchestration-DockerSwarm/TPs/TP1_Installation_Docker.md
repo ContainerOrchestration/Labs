@@ -51,6 +51,11 @@ We can now start Docker on our system
 sudo systemctl start docker
 ```
 
+and enable auto start of Docker after reboots
+```sh
+sudo systemctl enable docker
+```
+
 and check that it's running.
 
 The command
