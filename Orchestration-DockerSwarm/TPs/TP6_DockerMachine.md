@@ -373,10 +373,10 @@ eval $(docker-machine env test)
 env | grep DOCKER
 ```
 
-    [01;31m[KDOCKER[m[K_HOST=tcp://192.168.99.100:2376
-    [01;31m[KDOCKER[m[K_MACHINE_NAME=test
-    [01;31m[KDOCKER[m[K_TLS_VERIFY=1
-    [01;31m[KDOCKER[m[K_CERT_PATH=/home/mjb/.docker/machine/machines/test
+    DOCKER_HOST=tcp://192.168.99.100:2376
+    DOCKER_MACHINE_NAME=test
+    DOCKER_TLS_VERIFY=1
+    DOCKER_CERT_PATH=/home/mjb/.docker/machine/machines/test
 
 
 Now any docker command from *this shell* will access our docker-machine host until we unset those variables.
