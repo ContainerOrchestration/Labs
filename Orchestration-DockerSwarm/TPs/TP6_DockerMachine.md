@@ -96,3 +96,49 @@ you should see something similar to:
 $ docker-machine version
 docker-machine version 0.15.0, build b48dc28d
 ```
+
+
+
+
+### 2.1 Creating a machine:
+
+We can now create our first machine.
+
+#### On Windows:
+
+You will first need to create a new virtual switch.
+
+Open the "*Hyper-V Manager*" from the Windows task bar.
+
+Then in the right-hand Actions pane click on "*Virtual Switch Manager*".
+
+Create a new "*virtual network switch*" of type External and call it "*ext*".
+
+Now you can create a machine using the command:
+
+```
+docker-machine create -d hyperv --hyperv-virtual-switch ext test
+```
+
+In case of errors, use the --debug option to debug:
+
+```
+docker-machine --debug create -d hyperv --hyperv-virtual-switch ext test
+```
+
+
+#### On CentOS:
+
+Now you can create a machine using the command:
+
+```
+docker-machine create -d kvm --kvm-network "docker-machines" test
+```
+
+In case of errors, use the --debug option to debug:
+
+```
+docker-machine create --debug -d kvm --kvm-network "docker-machines" test
+```
+
+
