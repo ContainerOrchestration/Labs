@@ -141,4 +141,56 @@ In case of errors, use the --debug option to debug:
 docker-machine create --debug -d kvm --kvm-network "docker-machines" test
 ```
 
+Note it may be necessary to uncomment the lines:
+```
+    #user = root
+    #group = root
+```
+
+in file /etc/libvirt/qemu.conf.
+
+then restart libvirtd:
+```
+ systemctl restart libvirtd.service
+```
+
+An example output on CentOS is:
+```
+$ docker-machine create -d kvm --kvm-network "docker-machines" test
+Running pre-create checks...
+Creating machine...
+(test) Copying /home/mjb/.docker/machine/cache/boot2docker.iso to /home/mjb/.docker/machine/machines/test/boot2docker.iso...
+(test) Creating SSH key...
+(test) Failed to decode dnsmasq lease status: unexpected end of JSON input
+(test) Failed to decode dnsmasq lease status: unexpected end of JSON input
+...  LINES REMOVED ...
+(test) Failed to decode dnsmasq lease status: unexpected end of JSON input
+(test) Failed to decode dnsmasq lease status: unexpected end of JSON input
+Waiting for machine to be running, this may take a few minutes...
+Detecting operating system of created instance...
+Waiting for SSH to be available...
+Detecting the provisioner...
+Provisioning with boot2docker...
+Copying certs to the local machine directory...
+Copying certs to the remote machine...
+Setting Docker configuration on the remote daemon...
+Checking connection to Docker...
+Docker is up and running!
+To see how to connect your Docker Client to the Docker Engine running on this virtual machine, run: docker-machine env test
+```
+
+### 2.2 Accessing the machine:
+
+Let's first check that our machine is running correctly.
+
+**NOTE**: During the creation of the machine this command can be run but will show various errors, you can ignore those *worrying!* errors until the "*docker-machine create*" command has completed.
+
+Run the command:
+```
+$ docker-machine ls
+NAME   ACTIVE   DRIVER   STATE     URL                        SWARM   DOCKER        ERRORS
+test   -        kvm      Running   tcp://192.168.42.32:2376           v18.06.1-ce```
+
+
+
 
