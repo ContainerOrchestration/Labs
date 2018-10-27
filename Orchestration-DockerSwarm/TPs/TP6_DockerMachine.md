@@ -1,4 +1,7 @@
-# TP6: Docker Machine
+# TP6: Docker Machine - ABANDONED USE OF KVM
+
+- problems with docker-machine-driver-kvm (VM fails to have ip connectivity, cant ping google.com (or it's ip address - not a DNS problem)
+- abandoned for next commit : VirtualBox based.
 
 You can find the official documentation for '*Docker Machine*' here: [https://docs.docker.com/machine/](https://docs.docker.com/machine/)
 
