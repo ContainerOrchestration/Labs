@@ -62,7 +62,11 @@ The command
 ```sh
 sudo docker version
 ```
+
 should show the version of both the docker command-line client and the docker daemon, something like:
+
+(**NOTE**: Remember, if you have bash-completion enabled you can type '*docker ve*' followed by TAB to complete to '*docker version*')
+
 ```
 Client:
  Version:           18.06.1-ce
