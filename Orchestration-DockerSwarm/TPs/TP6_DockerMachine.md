@@ -36,7 +36,6 @@ sudo yum install libvirt-client qemu-kvm libvirt-daemon-driver-qemu
 Now download the latest docker-machine-driver-kvm from:
 https://github.com/dhiltgen/docker-machine-kvm/releases
 
-```
 move the driver to /usr/local/bin:
 ```
 sudo mv docker-machine-driver-kvm-centos7  /usr/local/bin/docker-machine-driver-kvm
@@ -65,7 +64,7 @@ systemctl status libvirtd
 
 You should see something like:
 
-'''
+```
 ● libvirtd.service - Virtualization daemon
    Loaded: loaded (/usr/lib/systemd/system/libvirtd.service; enabled; vendor preset: enabled)
    Active: active (running) since Sat 2018-10-27 11:40:26 CEST; 4s ago
@@ -76,7 +75,7 @@ You should see something like:
    Memory: 4.2M
    CGroup: /system.slice/libvirtd.service
            └─25213 /usr/sbin/libvirtd
-'''
+```
 
 The following should not produce any errors:
 ```
@@ -85,10 +84,7 @@ virsh list
 
 **NOTE**: Scott Lowe wrote a blog post about this installation here: https://blog.scottlowe.org/2017/11/24/using-docker-machine-kvm-libvirt/
 
-
-
 <div id="STEP2"> </div>
-
 
 ## 2. Using docker-machine
 
