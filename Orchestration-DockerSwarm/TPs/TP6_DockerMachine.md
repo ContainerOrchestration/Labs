@@ -154,7 +154,9 @@ then restart libvirtd:
  systemctl restart libvirtd.service
 ```
 
-An example output on CentOS is:
+**NOTE**: That machine creation can take several minutes especially for the first time as it is necessary to download the "*boot2docker.iso*" which is roughly 48M Bytes.
+
+An example output on creating the machine on CentOS is:
 ```
 $ docker-machine create -d kvm --kvm-network "docker-machines" test
 Running pre-create checks...
@@ -181,15 +183,131 @@ To see how to connect your Docker Client to the Docker Engine running on this vi
 
 ### 2.2 Accessing the machine:
 
-Let's first check that our machine is running correctly.
+**NOTE**: During the creation of the machine the command ```docker-machine ls``` can be run already but will show various errors, you can ignore those *worrying!* errors until the "*docker-machine create*" command has completed.
 
-**NOTE**: During the creation of the machine this command can be run but will show various errors, you can ignore those *worrying!* errors until the "*docker-machine create*" command has completed.
+Let's now check that our machine is running correctly.
 
-Run the command:
+Run the command: ```docker-machine ls```
+
+We can see the output below.
+It tells us we're running with the kvm driver, that our machine is "*Running*' and that the docker daemon (version "*v18.06.1-ce*") running in that virtual machine is contactable at tcp://192.168.42.32:2376.
+
 ```
 $ docker-machine ls
 NAME   ACTIVE   DRIVER   STATE     URL                        SWARM   DOCKER        ERRORS
-test   -        kvm      Running   tcp://192.168.42.32:2376           v18.06.1-ce```
+test   -        kvm      Running   tcp://192.168.42.32:2376           v18.06.1-ce
+```
+
+However we will need to know more before we can connect to the daemon.
+
+Try running (replacing the tcp: address with your output from "*docker-machine ls*"):
+```
+docker -H tcp://192.168.42.32:2376 ps
+```
+
+and you will see that we need certificates to access the daemon.
+```
+Get http://192.168.42.32:2376/v1.38/containers/json: net/http: HTTP/1.x transport connection broken: malformed HTTP response "\x15\x03\x01\x00\x02\x02".
+* Are you trying to connect to a TLS-enabled daemon without TLS?
+```
+
+### 2.3 Connecting to the docker daemon
+
+docker-machine provides 2 ways to connect to the daemon.
+
+We can provide the parameters to the docker client either through:
+- command-line parameters
+- shell environment variables
+
+#### Connecting to the docker daemon - Using command-line parameters
+
+We can use the *config* command to get the parameters we need to pass to the docker client:
+```
+$ docker-machine config test
+--tlsverify
+--tlscacert="/home/mjb/.docker/machine/machines/test/ca.pem"
+--tlscert="/home/mjb/.docker/machine/machines/test/cert.pem"
+--tlskey="/home/mjb/.docker/machine/machines/test/key.pem"
+-H=tcp://192.168.42.32:2376
+```
+
+So we can pass these parameters to the docker client at each invocation as follows:
+
+```
+$ docker $(docker-machine config test) version
+Client:
+ Version:           18.06.1-ce
+ API version:       1.38
+ Go version:        go1.10.3
+ Git commit:        e68fc7a
+ Built:             Tue Aug 21 17:23:03 2018
+ OS/Arch:           linux/amd64
+ Experimental:      false
+
+Server:
+ Engine:
+  Version:          18.06.1-ce
+  API version:      1.38 (minimum version 1.12)
+  Go version:       go1.10.3
+  Git commit:       e68fc7a
+  Built:            Tue Aug 21 17:28:38 2018
+  OS/Arch:          linux/amd64
+  Experimental:     false
+```
+
+It may not be obvious that we are accessing a "*remote*" docker daemon.
+Try ```  docker $(docker-machine config test) info```
+instead and in the output you should see the lines
+```
+Kernel Version: 4.9.93-boot2docker
+Operating System: Boot2Docker 18.06.1-ce (TCL 8.2.1); HEAD : c7e5c3e - Wed Aug 22 16:27:42 UTC 2018
+```
+
+different from your Windows or CentOS host.
+
+This is very handy, by providing different parameters to the docker client we can switch between different environments.
+
+
+#### Connecting to the docker daemon - Using environment variables
+
+The other way to connect is by using the "*env*" sub-command:
+
+```
+$ docker-machine env test
+export DOCKER_TLS_VERIFY="1"
+export DOCKER_HOST="tcp://192.168.42.32:2376"
+export DOCKER_CERT_PATH="/home/mjb/.docker/machine/machines/test"
+export DOCKER_MACHINE_NAME="test"
+# Run this command to configure your shell:
+# eval $(docker-machine env test)
+```
+
+So now run that last command
+```
+eval $(docker-machine env test)
+```
+
+and we now have the appropriate variables set:
+```
+env | grep DOCKER
+DOCKER_HOST=tcp://192.168.42.32:2376
+DOCKER_MACHINE_NAME=test
+DOCKER_TLS_VERIFY=1
+DOCKER_CERT_PATH=/home/mjb/.docker/machine/machines/test
+```
+
+Now any docker command from *this shell* will access our docker-machine host until we unset those variables.
+
+Check this by running
+```
+docker info
+```
+
+to check that you see the same lines as before:
+```
+Kernel Version: 4.9.93-boot2docker
+Operating System: Boot2Docker 18.06.1-ce (TCL 8.2.1); HEAD : c7e5c3e - Wed Aug 22 16:27:42 UTC 2018
+```
 
 
 
