@@ -390,6 +390,49 @@ Experiment with the following commands subset, try also adding the ```--debug```
   
   and
   ``` docker-machine --debug ssh test uptime```
-  
+
+Log into the machine with ```docker-machine ssh test``` and play with docker commands from there.
+
+
+### 2.5 Managing multiple machines
+
+Now let's try creating more machines.
+
+#### Create test2, test3, ...
+
+Now use the appropriate command for your Operating System to create some more machines.
+
+Then use ```docker-machine ls``` to see those machines
+
+e.g.
+```
+$ docker-machine ls
+NAME    ACTIVE   DRIVER   STATE     URL                         SWARM   DOCKER        ERRORS
+test    *        kvm      Running   tcp://192.168.42.32:2376            v18.06.1-ce
+test2   -        kvm      Running   tcp://192.168.42.176:2376           v18.06.1-ce
+test3   -        kvm      Running   tcp://192.168.42.64:2376            v18.06.1-ce
+```
+
+Now experiment.
+
+Note that *test* is the active machine (because environment variables are set for this machine.
+
+Run a container on the "*test*" machine and then verify that the container is running on test and not on test2 or test3.
+
+## 2.6 Create machines in the Cloud
+
+
+
+## 2.7 Destroy all the machines
+
+Finally let's clean up for now by destroying the machines we created.
+
+Use the docker-machine rm command for this.
+
+Lazy or super efficient ops people can do that with the following command:
+```
+docker-machine rm -f $(docker-machine ls -q)
+```
+
 
 
