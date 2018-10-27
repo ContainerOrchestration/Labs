@@ -10,17 +10,24 @@ If using '*Docker Desktop*' for Windows you already have *docker-compose*' insta
 
 Go to the page [https://github.com/docker/compose/releases](https://github.com/docker/compose/releases) and download the latest Linux binary, e.g. [docker-compose-Linux-x86_64](https://github.com/docker/compose/releases/download/1.23.0-rc3/docker-compose-Linux-x86_64).
 
-```
+```bash
 wget -O docker-compose https://github.com/docker/compose/releases/download/1.23.0-rc3/docker-compose-Linux-x86_64
 ```
 
 Copy the binary to /usr/local/bin and set execution rights:
 
-```
+```bash
 sudo mv docker-compose /usr/local/bin
 sudo chmod +x /usr/local/bin/docker-compose
 ```
 
+## 1.1 Download docker-compose bash-completion on CentOS 7
+
+```bash
+sudo curl -L https://raw.githubusercontent.com/docker/compose/1.22.0/contrib/completion/bash/docker-compose -o /etc/bash_completion.d/docker-compose
+```
+
+bash completion should be available at the next login (or type 'bash' to go to a sub-shell).
 
 ## 2. Using docker-compose
 

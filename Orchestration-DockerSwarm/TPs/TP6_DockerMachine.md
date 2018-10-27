@@ -29,9 +29,18 @@ sudo mv docker-machine /usr/local/bin
 sudo chmod +x /usr/local/bin/docker-machine
 ```
 
-The VirtualBox driver is already included in the docker-machine binary.
+## 1.0.1 Download docker-machine bash-completion on CentOS 7
+
+```bash
+sudo curl -L https://raw.githubusercontent.com/docker/machine/v0.14.0/contrib/completion/bash/docker-machine.bash -o /etc/bash_completion.d/docker-machine
+```
+
+bash completion should be available at the next login (or type 'bash' to go to a sub-shell).
+
 
 ### 1.1 Install VirtualBox
+
+The VirtualBox driver is already included in the docker-machine binary.
 
 However we need to install VirtualBox.
 

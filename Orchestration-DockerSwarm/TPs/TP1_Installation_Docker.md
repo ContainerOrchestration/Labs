@@ -108,6 +108,15 @@ Now check that your non-root user can run Docker commands:
 docker version
 ```
 
+## 1.0.1 Download docker bash-completion on CentOS 7
+
+```bash
+sudo curl -L https://raw.githubusercontent.com/docker/cli/master/contrib/completion/bash/docker -o /etc/bash_completion.d/docker
+```
+
+bash completion should be available at the next login (or type 'bash' to go to a sub-shell).
+
+
 Now skip to the [#example](#example) below to run a few simple Docker commands
 
 <div id="install_dd_windows">
