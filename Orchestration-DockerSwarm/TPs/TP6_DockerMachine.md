@@ -4,7 +4,7 @@ You can find the official documentation for '*Docker Machine*' here: [https://do
 
 The source code for '*Docker Machine*' is available here: [https://github.com/docker/machine](https://github.com/docker/machine)
 
-If using '*Docker Desktop*' for Windows you already have *docker-machine*' installed, you can skip to step 2 <a href="#STEP2"> BELOW</a>.
+If using '*Docker Desktop*' for Windows you already have *docker-machine*' installed, you can skip to <a href="#2-using-docker-machine"> step 2</a> "*Using docker-machine*" below.
 
 ## 1. Download docker-machine on CentOS 7
 
@@ -83,8 +83,6 @@ virsh list
 ```
 
 **NOTE**: Scott Lowe wrote a blog post about this installation here: https://blog.scottlowe.org/2017/11/24/using-docker-machine-kvm-libvirt/
-
-<div id="STEP2"> </div>
 
 ## 2. Using docker-machine
 
