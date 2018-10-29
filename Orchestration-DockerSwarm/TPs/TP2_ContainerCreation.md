@@ -606,4 +606,182 @@ Lance le container image mjbright/docker-demo:1 a nouveau mais avec l'option '*-
 
 **Comment** acceder au container?
 
+# 3. Investiguer les processus
 
+Nous allons investiguer les processus dans un container et comment la vue des processus dans les containers, dans un namespaces PID propre et different.
+
+
+Vous auriez peut-etre besoin d'installer l'utilitaire pstree sur CentOS
+```yum install -y psmisc```
+
+d'abord **arreter tous les containers qui tournent**:
+```docker stop $(docker ps -q)```
+
+et **supprimer tous les (stopped) containers**:
+```docker rm $(docker ps -qa)```
+
+
+Lancer 2 containers alpine nomme alpine1 et alpine2 comme ci-bas.
+
+Ca va lancer 2 containers qui tourne en boucle.
+
+
+```bash
+docker run -it -d --name alpine1 alpine sh -c 'while true; do echo "alpine1: $(date)"; sleep 5; done'
+```
+
+    aaf16fc5bdb140269dd2d32a06168c94f5aa99a13b40b82115109a62d64dca9d
+
+
+
+```bash
+docker run -it -d --name alpine2 alpine sh -c 'while true; do echo "alpine2: $(date)"; sleep 5; done'
+```
+
+    fc16fead341f85cef4d17f420a67f7353102bb5554f56401cec05361da29a77d
+
+
+
+```bash
+docker logs alpine1
+```
+
+    alpine1: Mon Oct 29 15:16:04 UTC 2018
+    alpine1: Mon Oct 29 15:16:09 UTC 2018
+    alpine1: Mon Oct 29 15:16:14 UTC 2018
+    alpine1: Mon Oct 29 15:16:19 UTC 2018
+    alpine1: Mon Oct 29 15:16:24 UTC 2018
+    alpine1: Mon Oct 29 15:16:29 UTC 2018
+    alpine1: Mon Oct 29 15:16:34 UTC 2018
+    alpine1: Mon Oct 29 15:16:39 UTC 2018
+    alpine1: Mon Oct 29 15:16:44 UTC 2018
+    alpine1: Mon Oct 29 15:16:49 UTC 2018
+    alpine1: Mon Oct 29 15:16:54 UTC 2018
+    alpine1: Mon Oct 29 15:16:59 UTC 2018
+    alpine1: Mon Oct 29 15:17:04 UTC 2018
+    alpine1: Mon Oct 29 15:17:09 UTC 2018
+    alpine1: Mon Oct 29 15:17:14 UTC 2018
+    alpine1: Mon Oct 29 15:17:19 UTC 2018
+    alpine1: Mon Oct 29 15:17:24 UTC 2018
+    alpine1: Mon Oct 29 15:17:29 UTC 2018
+    alpine1: Mon Oct 29 15:17:34 UTC 2018
+    alpine1: Mon Oct 29 15:17:39 UTC 2018
+    alpine1: Mon Oct 29 15:17:44 UTC 2018
+    alpine1: Mon Oct 29 15:17:49 UTC 2018
+    alpine1: Mon Oct 29 15:17:54 UTC 2018
+    alpine1: Mon Oct 29 15:17:59 UTC 2018
+    alpine1: Mon Oct 29 15:18:04 UTC 2018
+    alpine1: Mon Oct 29 15:18:09 UTC 2018
+    alpine1: Mon Oct 29 15:18:14 UTC 2018
+    alpine1: Mon Oct 29 15:18:19 UTC 2018
+    alpine1: Mon Oct 29 15:18:24 UTC 2018
+    alpine1: Mon Oct 29 15:18:29 UTC 2018
+    alpine1: Mon Oct 29 15:18:34 UTC 2018
+    alpine1: Mon Oct 29 15:18:39 UTC 2018
+    alpine1: Mon Oct 29 15:18:44 UTC 2018
+    alpine1: Mon Oct 29 15:18:49 UTC 2018
+    alpine1: Mon Oct 29 15:18:54 UTC 2018
+    alpine1: Mon Oct 29 15:18:59 UTC 2018
+    alpine1: Mon Oct 29 15:19:04 UTC 2018
+    alpine1: Mon Oct 29 15:19:09 UTC 2018
+    alpine1: Mon Oct 29 15:19:14 UTC 2018
+    alpine1: Mon Oct 29 15:19:19 UTC 2018
+    alpine1: Mon Oct 29 15:19:24 UTC 2018
+    alpine1: Mon Oct 29 15:19:29 UTC 2018
+    alpine1: Mon Oct 29 15:19:34 UTC 2018
+    alpine1: Mon Oct 29 15:19:39 UTC 2018
+    alpine1: Mon Oct 29 15:19:44 UTC 2018
+    alpine1: Mon Oct 29 15:19:49 UTC 2018
+    alpine1: Mon Oct 29 15:19:54 UTC 2018
+    alpine1: Mon Oct 29 15:19:59 UTC 2018
+    alpine1: Mon Oct 29 15:20:04 UTC 2018
+    alpine1: Mon Oct 29 15:20:09 UTC 2018
+    alpine1: Mon Oct 29 15:20:14 UTC 2018
+    alpine1: Mon Oct 29 15:20:19 UTC 2018
+    alpine1: Mon Oct 29 15:20:24 UTC 2018
+    alpine1: Mon Oct 29 15:20:29 UTC 2018
+    alpine1: Mon Oct 29 15:20:34 UTC 2018
+    alpine1: Mon Oct 29 15:20:39 UTC 2018
+    alpine1: Mon Oct 29 15:20:44 UTC 2018
+    alpine1: Mon Oct 29 15:20:49 UTC 2018
+    alpine1: Mon Oct 29 15:20:54 UTC 2018
+    alpine1: Mon Oct 29 15:20:59 UTC 2018
+    alpine1: Mon Oct 29 15:21:04 UTC 2018
+    alpine1: Mon Oct 29 15:21:09 UTC 2018
+    alpine1: Mon Oct 29 15:21:14 UTC 2018
+    alpine1: Mon Oct 29 15:21:19 UTC 2018
+    alpine1: Mon Oct 29 15:21:24 UTC 2018
+    alpine1: Mon Oct 29 15:21:29 UTC 2018
+    alpine1: Mon Oct 29 15:21:34 UTC 2018
+    alpine1: Mon Oct 29 15:21:39 UTC 2018
+    alpine1: Mon Oct 29 15:21:44 UTC 2018
+    alpine1: Mon Oct 29 15:21:49 UTC 2018
+    alpine1: Mon Oct 29 15:21:54 UTC 2018
+    alpine1: Mon Oct 29 15:21:59 UTC 2018
+    alpine1: Mon Oct 29 15:22:04 UTC 2018
+    alpine1: Mon Oct 29 15:22:09 UTC 2018
+    alpine1: Mon Oct 29 15:22:14 UTC 2018
+
+
+Recuperons le PID du docker daemon:
+
+
+```bash
+ps -fade | grep dockerd | grep -v grep
+DOCKERD_PID=$(ps -fade | awk '!/grep/ && /dockerd/ { print $2; }')
+
+echo "PID of dockerd is $DOCKERD_PID"
+```
+
+    root      1116     1  0 Oct27 ?        00:24:36 /usr/bin/dockerd
+    PID of dockerd is 1116
+
+
+Regardez le process tree vu depuis la hote:
+(nous eliminons les threads en excluant "{")
+
+
+```bash
+pstree -aps $DOCKERD_PID | grep -v "{"
+```
+
+    systemd,1 --system --deserialize 21
+      `-dockerd,1116
+          |-docker-containe,1255 --config /var/run/docker/containerd/containerd.toml
+          |   |-docker-containe,22766 -namespace moby -workdir...
+          |   |   |-sh,22784 -c while true; do echo "alpine1: $(date)"; sleep 5; done
+          |   |   |   `-sleep,23271 5
+          |   |-docker-containe,22839 -namespace moby -workdir...
+          |   |   |-sh,22859 -c while true; do echo "alpine2: $(date)"; sleep 5; done
+          |   |   |   `-sleep,23267 5
+
+
+Nous voyons clairement nos containers alpine1 / alpine2 avec leurs boucles '*while*' qui continuent a tourner
+
+On voit sur la hote les PIDs utilisaient pour ses processus, alors dans les containers on voit quoi?
+
+
+```bash
+docker exec -it alpine1 ps -fade
+```
+
+    PID   USER     TIME  COMMAND
+        1 root      0:00 sh -c while true; do echo "alpine1: $(date)"; sleep 5; don
+      233 root      0:00 sleep 5
+      234 root      0:00 ps -fade
+
+
+
+```bash
+docker exec -it alpine1 ps -fade
+```
+
+    PID   USER     TIME  COMMAND
+        1 root      0:00 sh -c while true; do echo "alpine1: $(date)"; sleep 5; don
+      244 root      0:00 sleep 5
+      245 root      0:00 ps -fade
+
+
+On voit tres clairement que le processus '*racine*' a un PID de '*1*'.
+
+Donc on voit bien nos processus depuis la hote mais dans chaque container on ne voit que ses propres PIDs dans un espace de nommage qui lui est propre.
