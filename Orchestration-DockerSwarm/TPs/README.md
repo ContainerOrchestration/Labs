@@ -1,6 +1,7 @@
 # TPs pour la formation "Introduction to Docker", a.k.a "Automatiser le deploiement d’applications avec Docker"
 
 ### Jour 1:
+- [TP0](TP0_Installation_Extras.md): Installation Pre-requisites
 - [TP1](TP1_Installation_Docker.md): Installation (sous CentOS ou Windows), le docker client
 - [TP2](TP2_ContainerCreation.md): Creation de Conteneurs
 - [TP3](TP3_ImageCreation.md): creation d'Images
