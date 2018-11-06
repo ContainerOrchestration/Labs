@@ -610,7 +610,6 @@ Lance le container image mjbright/docker-demo:1 a nouveau mais avec l'option '*-
 
 Nous allons investiguer les processus dans un container et comment la vue des processus dans les containers, dans un namespaces PID propre et different.
 
-
 Vous auriez peut-etre besoin d'installer l'utilitaire pstree sur CentOS
 ```yum install -y psmisc```
 
@@ -740,6 +739,9 @@ echo "PID of dockerd is $DOCKERD_PID"
 Regardez le process tree vu depuis la hote:
 (nous eliminons les threads en excluant "{")
 
+### ON WINDOWS:
+  winpty docker run --privileged --pid=host -it alpine:3.8 nsenter -t 1 -m -u -n -i sh
+  
 
 ```bash
 pstree -aps $DOCKERD_PID | grep -v "{"
