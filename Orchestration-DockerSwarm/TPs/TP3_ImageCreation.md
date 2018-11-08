@@ -250,3 +250,74 @@ Search for images, e.g. 'hello-world' using the Docker client, e.g. 'docker imag
 https://hub.docker.com/_/hello-world/
 
 
+# Building images
+
+Check out the github repository https://github.com/mjbright/Docker, e.g.
+
+```
+mkdir ~/src
+cd ~/src
+git clone https://github.com/mjbright/Docker
+```
+
+Then change to the docker-demo directory.
+
+Build the image using
+```
+docker image build -t mjbright/docker-demo:1 .
+```
+
+Look for the image with
+```
+docker image ls
+```
+It should be the first image shown.
+
+Rebuild the image and notice how 'docker image build' uses cached layers when appropriate.
+
+### Test the image using:
+```
+docker run -d -p 8081:80 mjbright/docker-demo:1
+curl http://127.0.0.1:8081
+```
+
+Do you see the whale?
+
+### Now build 'your' image using your dockerid
+Now build the image using your own <dockerid> instead of "mjbright".
+
+
+Rendezvous at https://cloud.docker.com/ if you haven't yet created an account.
+  
+Now push your image to the docker hub
+```
+docker login
+docker push <dockerid>/docker-demo:1
+```
+
+Visit https://hub.docker.com to see your image repository.
+
+### Modifying the build
+
+Look under directory static/img, to see the images (asciitext or png) available.
+
+Modify the line
+```
+LOGO_ASCII_ART     = "static/img/docker_blue.txt"
+```
+
+to use a different text file, docker_green.txt or kubernetes_blue.txt for example.
+
+Rebuild the image but as <dockerid>/docker-demo:2
+  
+Note how initial steps of the build use the cached image layers, but from the "RUN cd /src && go build -o docker-demo" line all layers are rebuilt due to our changes.
+
+Now test the new image, with e.g.
+
+```
+docker run -p 8082:80 <dockerid>/docker-demo:2
+curl 127.0.0.1:8082
+```
+
+
+
