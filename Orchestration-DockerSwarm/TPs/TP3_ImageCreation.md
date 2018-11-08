@@ -110,6 +110,7 @@ In each case there is a layer specifying the default command to use when launchi
 
 We can also inspect an image for more information, including some meta information:
 ```
+$ docker image inspect hello-world
 [
     {
         "Id": "sha256:4ab4c602aa5eed5528a6620ff18a1dc4faef0e1ab3a5eddeddb410714478c67f",
@@ -240,14 +241,10 @@ Because this is an official image it is scanned for vulnerabilities.
 Look also at the Python repository at https://hub.docker.com/r/library/python/tags/, we see that there are some vulnerabilities detected (as there would be in the corresponding Python binaries ... nothing to do with Docker itself).
 
 
-
-
 ## Finding images on command-line:
 
 Search for images, e.g. 'hello-world' using the Docker client, e.g. 'docker image search hello-world'.
 
-
-
-
-
 https://hub.docker.com/_/hello-world/
+
+
