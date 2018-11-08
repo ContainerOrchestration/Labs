@@ -260,10 +260,11 @@ cd ~/src
 git clone https://github.com/mjbright/Docker
 ```
 
-Then change to the docker-demo directory.
+Then change to the Docker/docker-demo directory.
 
 Build the image using
 ```
+cd Docker/docker-demo
 docker image build -t mjbright/docker-demo:1 .
 ```
 
