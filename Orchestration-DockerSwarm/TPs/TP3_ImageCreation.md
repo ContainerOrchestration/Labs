@@ -240,6 +240,8 @@ Because this is an official image it is scanned for vulnerabilities.
 
 Look also at the Python repository at https://hub.docker.com/r/library/python/tags/, we see that there are some vulnerabilities detected (as there would be in the corresponding Python binaries ... nothing to do with Docker itself).
 
+You can click on one of the tags to see where the vulnerabilities exist, e.g.
+see https://hub.docker.com/r/library/python/tags/3.6.7-stretch/
 
 ## Finding images on command-line:
 
