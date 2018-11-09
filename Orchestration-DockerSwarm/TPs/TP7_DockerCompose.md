@@ -139,12 +139,55 @@ Now launch the application in detached mode with
 docker-compose -f docker-compose-simple.yml up -d
 ```
 
+You should now see some links appear at the top of the Play-with-docker page allowing access to the voting app (port 5000) and the results app (port 5001).
+
+Click on them to try the app.
+
+
+You can check the logs of all running services with
+```
+docker-compose -f docker-compose-simple.yml logs
+```
+
+Or a specific service, such as vote here:
+```
+docker-compose -f docker-compose-simple.yml logs vote
+```
+
+Or follow the logs with option -f  (follow)
+```
+docker-compose -f docker-compose-simple.yml logs -f vote
+```
+
+Now stop the application using:
+```
+docker-compose -f docker-compose-simple.yml down
+```
+
 #### 3.1.2 Docker-compose
+
+This version is more elaborate, in particular we see that it creates some dedicated networks between components and a volume for Postgres.
 
 ![](images/docker-compose.JPG)
 
+Compare this with the docker-compose-simple.yml
+
+Start this new version with
+```
+docker-compose up -d
+```
+
+**NOTE:** this time no need to specify the docker-compose file as by default docker-compose.yml or docker-compose.yaml are used.
 
 #### 3.1.3 Docker-compose-windows
+
+This version cannot be run on Play-with-docker or on a Linux Docker Engine.
+
+It can be run on Docker Desktop for Windows only if 'Windows Containers' mode is enabled.
+
+You are invited to
+- study the docker-compose-windows.yml file to see how it compares to the previous docker-compose.yml
+- If running Docker Desktop for Windows, swithc to 'Windows Containers' and try ```docker-compose -f docker-compose-windows.yml up -d```
 
 ![](images/docker-compose-windows.JPG)
 
