@@ -16,11 +16,17 @@
 
 ## Ressources Docker
 
-- Docker
-- Docker Blog
+- Docker Inc. WebSite[https://www.docker.com/](https://www.docker.com/), Blog[https://blog.docker.com/](https://blog.docker.com/)
+- Docker Docs: [https://docs.docker.com/](https://docs.docker.com/)
 - Docker Docs
 - DockerCon
 
 - Awesome Docker : [https://github.com/veggiemonk/awesome-docker](https://github.com/veggiemonk/awesome-docker)
-- **Docker CheatSheet**: [https://github.com/eon01/DockerCheatSheet](https://github.com/eon01/DockerCheatSheet)
+- **Docker CheatSheets**:
+- [https://github.com/eon01/DockerCheatSheet](https://github.com/eon01/DockerCheatSheet)
+- [https://github.com/dimonomid/docker-quick-ref](https://github.com/dimonomid/docker-quick-ref)
+
+
+## Installation
+- Sur Kali Linux: https://medium.com/@airman604/installing-docker-in-kali-linux-2017-1-fbaa4d1447fe
 
