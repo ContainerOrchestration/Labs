@@ -29,6 +29,10 @@ docker image ls
 
 **All commands in this page should be typed into the terminal of play-with-docker.**
 
+**NOTE:** It is also possible to connect to the play-with-docker environment by ssh
+
+(the ssh command is provided for you in the page).
+
 ## 2. Download docker-compose
 
 In fact we do not need to do this as the latest docker-compose is already installed in this environment.
@@ -58,7 +62,7 @@ docker-compose version
 
 To see what version you have installed
 ```
-docker-machine compose
+docker-compose version
 ```
 
 you should see something similar to:
@@ -70,12 +74,59 @@ CPython version: 3.6.6
 OpenSSL version: OpenSSL 1.1.0f  25 May 2017
 ```
 
-
-
-
-## 4 Recuperate the example voting app
+## 3.1 Recuperate the example voting app
 
 For this lab I propose to use a new environment, an environment in the cloud called "Play with Docker"
 ```
+mkdir ~/src
+cd    ~/src
 git clone https://github.com/dockersamples/example-voting-app
 ```
+
+Go to the directory where you downloaded the source for the voting-app and list the YAML (\*.yml) files there
+```
+cd example-voting-app
+ls *.yml
+```
+
+e.g.
+```
+[node1] (local) root@192.168.0.22 ~/src/example-voting-app
+$ ls -al *.yml
+-rw-r--r--    1 root     root           808 Nov  9 07:34 docker-compose-javaworker.yml
+-rw-r--r--    1 root     root           517 Nov  9 07:34 docker-compose-k8s.yml
+-rw-r--r--    1 root     root           400 Nov  9 07:34 docker-compose-simple.yml
+-rw-r--r--    1 root     root          1107 Nov  9 07:34 docker-compose-windows-1809.yml
+-rw-r--r--    1 root     root           994 Nov  9 07:34 docker-compose-windows.yml
+-rw-r--r--    1 root     root           808 Nov  9 07:34 docker-compose.yml
+-rw-r--r--    1 root     root          1435 Nov  9 07:34 docker-stack-simple.yml
+-rw-r--r--    1 root     root          1037 Nov  9 07:34 docker-stack-windows-1809.yml
+-rw-r--r--    1 root     root          1284 Nov  9 07:34 docker-stack-windows.yml
+-rw-r--r--    1 root     root          1666 Nov  9 07:34 docker-stack.yml
+-rw-r--r--    1 root     root          3201 Nov  9 07:34 kube-deployment.yml
+```
+
+We see that there are many docker compose files.
+
+For this lab we are interested in:
+- docker-compose-simple.yml
+- docker-compose.yml
+- docker-compose-windows.yml
+
+#### 3.1.1 Docker-compose-simple
+
+![](images/docker-compose-simple.JPG)
+
+
+#### 3.1.2 Docker-compose
+
+![](images/docker-compose.JPG)
+
+
+#### 3.1.3 Docker-compose-windows
+
+![](images/docker-compose-windows.JPG)
+
+
+
+
