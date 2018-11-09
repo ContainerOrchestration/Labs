@@ -161,7 +161,7 @@ For this lab we are interested in:
 - docker-stack.yml
 - docker-stack-windows.yml
 
-#### 3.1.1 Docker-stack-simple
+### 3.1.1 Docker-stack-simple
 
 This is the simplest architecture proposed.
 
@@ -190,53 +190,105 @@ You should now see some links appear at the top of the Play-with-docker page all
 
 Click on them to try the app.
 
+### 3.1.2 Examing the the stack(s)
+
+We can list the stack we deployed using ```docker stack ls```
+e.g.
+```
+[node1] (local) root@192.168.0.48 ~
+$ docker stack ls
+NAME                SERVICES            ORCHESTRATOR
+vote                5                   Swarm
+```
+
+List the services of a stack using ```docker stack services <STACK>```
+e.g.
+```
+[node1] (local) root@192.168.0.48 ~
+$ docker stack services vote
+ID                  NAME                MODE                REPLICAS            IMAGE                                          PORTS
+8k96a2hio865        vote_redis          replicated          1/1                 redis:alpine                                   *:30000->6379/tcp
+imnx6a92wnug        vote_result         replicated          1/1                 dockersamples/examplevotingapp_result:before   *:5001->80/tcp
+tl09bc0c1wse        vote_vote           replicated          1/1                 dockers
+amples/examplevotingapp_vote:before     *:5000->80/tcp
+uj6v4d78j58e        vote_db             replicated          1/1                 postgres:9.4
+uxtcsycm1hmp        vote_worker         replicated          1/1                 dockersamples/examplevotingapp_worker:latest
+```
+
+List the tasks (containers) of a stack using ```docker stack ps <STACK>```
+e.g.
+
+```
+[node1] (local) root@192.168.0.48 ~
+$ docker stack ps vote
+ID                  NAME                IMAGE                                          NODE                DESIRED STATE       CURRENT STATE            ERROR               PORTS
+l5u2lxgh1e15        vote_db.1           postgres:9.4                                   node1               Running             Running 16 minutes ago
+fwiek25fumb0        vote_redis.1        redis:alpine                                   node3               Running             Running 16 minutes ago
+pbm4x6lk90ma        vote_worker.1       dockersamples/examplevotingapp_worker:latest   node1               Running             Running 15 minutes ago
+scamkonujgmb        vote_result.1       dockersamples/examplevotingapp_result:before   node1               Running             Running 16 minutes ago
+iapprhzwnj9d        vote_vote.1         dockersamples/examplevotingapp_vote:before     node2               Running             Running 16 minutes ago
+```
+
+### 3.1.3 Examing the the service(s)
+
+We can also use the ```docker service``` commands to examine cluster-wide services (across all stacks).
+e.g.
+
+```
+[node1] (local) root@192.168.0.48 ~
+$ docker service ls
+ID                  NAME                MODE                REPLICAS            IMAGE                                          PORTS
+uj6v4d78j58e        vote_db             replicated          1/1                 postgres:9.4
+8k96a2hio865        vote_redis          replicated          1/1                 redis:alpine                                   *:30000->6379/tcp
+imnx6a92wnug        vote_result         replicated          1/1                 dockersamples/examplevotingapp_result:before   *:5001->80/tcp
+tl09bc0c1wse        vote_vote           replicated          1/1                 dockersamples/examplevotingapp_vote:before     *:5000->80/tcp
+uxtcsycm1hmp        vote_worker         replicated          1/1                 dockersamples/examplevotingapp_worker:latest
+```
+
+or list the services ising 
 ____
 
 
-You can check the logs of all running services with
+You can check the logs of a running services with ```docker service logs <SERVICE>```
+e.g.
 ```
-docker-compose -f docker-compose-simple.yml logs
-```
-
-Or a specific service, such as vote here:
-```
-docker-compose -f docker-compose-simple.yml logs vote
-```
-
-Or follow the logs with option -f  (follow)
-```
-docker-compose -f docker-compose-simple.yml logs -f vote
+[node1] (local) root@192.168.0.48 ~
+$ docker service logs vote_db
+vote_db.1.l5u2lxgh1e15@node1    | ERROR:  relation "votes" does not exist at character 38
+vote_db.1.l5u2lxgh1e15@node1    | STATEMENT:  SELECT vote, COUNT(id) AS count FROM votes GROUP BY vote
+vote_db.1.l5u2lxgh1e15@node1    | PostgreSQL init process complete; ready for start up.
 ```
 
-Now stop the application using:
-```
-docker-compose -f docker-compose-simple.yml down
-```
+### 3.1.4 Destroy the stack
 
-#### 3.1.2 Docker-compose
-
-This version is more elaborate, in particular we see that it creates some dedicated networks between components and a volume for Postgres.
-
-![](images/docker-compose.JPG)
-
-Compare this with the docker-compose-simple.yml
-
-Start this new version with
-```
-docker-compose up -d
+```[node1] (local) root@192.168.0.48 ~
+$ docker stack rm vote
+Removing service vote_db
+Removing service vote_redis
+Removing service vote_result
+Removing service vote_vote
+Removing service vote_worker
+Removing network vote_frontend
+Removing network vote_backend
 ```
 
-**NOTE:** this time no need to specify the docker-compose file as by default docker-compose.yml or docker-compose.yaml are used.
+#### 3.2 Docker-stack
 
-#### 3.1.3 Docker-compose-windows
+Compare the docker-stack.yml file and docker-stack-simple.yml (as per compose example).
+
+Launch the stack and investigate the stack and service objects as before.
+
+```docker stack deploy vote```
+
+#### 3.1.3 Docker-stack-windows
 
 This version cannot be run on Play-with-docker or on a Linux Docker Engine.
 
 It can be run on Docker Desktop for Windows only if 'Windows Containers' mode is enabled.
 
 You are invited to
-- study the docker-compose-windows.yml file to see how it compares to the previous docker-compose.yml
-- If running Docker Desktop for Windows, swithc to 'Windows Containers' and try ```docker-compose -f docker-compose-windows.yml up -d```
+- study the docker-stack-windows.yml file to see how it compares to the previous docker-stack.yml
+- If running Docker Desktop for Windows, switch to 'Windows Containers' and try ```docker stack deploy -c docker-stack-windows.yml vote```
 
 ![](images/docker-compose-windows.JPG)
 
