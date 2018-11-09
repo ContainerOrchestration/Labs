@@ -4,32 +4,57 @@ You can find the official documentation for '*Docker Compose*' here: [https://do
 
 The source code for '*Docker Compose*' is available here: [https://github.com/docker/compose](https://github.com/docker/compose)
 
-If using '*Docker Desktop*' for Windows you already have *docker-compose*' installed, you can skip to step 2.
+## 1. Connect to the Play-with-Docker environment
 
-## 1. Download docker-compose on CentOS 7
+For this lab I propose to use a new environment, an environment in the cloud called "Play with Docker".
 
-Go to the page [https://github.com/docker/compose/releases](https://github.com/docker/compose/releases) and download the latest Linux binary, e.g. [docker-compose-Linux-x86_64](https://github.com/docker/compose/releases/download/1.23.0-rc3/docker-compose-Linux-x86_64).
+Open a browser window at https://play-with-docker.com.
 
-```bash
-wget -O docker-compose https://github.com/docker/compose/releases/download/1.23.0-rc3/docker-compose-Linux-x86_64
+Connect to your account.
+
+Once logged in you will see that our environment is available for 4 hours, we see the countdown timer.
+So beware that all work you do here will be lost.
+
+Click on the **"+ ADD NEW INSTANCE"** button
+![](images/playwd1.JPG)
+
+This will create a new Docker host for us.
+
+From this host verify that you can run some commands:
+```
+docker version
+docker container run --rm hello-world
+docker image ls
 ```
 
-Copy the binary to /usr/local/bin and set execution rights:
+**All commands in this page should be typed into the terminal of play-with-docker.**
 
-```bash
-sudo mv docker-compose /usr/local/bin
-sudo chmod +x /usr/local/bin/docker-compose
-```
+## 2. Download docker-compose
 
-## 1.1 Download docker-compose bash-completion on CentOS 7
+In fact we do not need to do this as the latest docker-compose is already installed in this environment.
+
+## 2.1 Download docker-compose bash-completion
 
 ```bash
 sudo curl -L https://raw.githubusercontent.com/docker/compose/1.22.0/contrib/completion/bash/docker-compose -o /etc/bash_completion.d/docker-compose
 ```
 
-bash completion should be available at the next login (or type 'bash' to go to a sub-shell).
+Now enable the bash completion and test that it works:
+```
+. /etc/bash_completion.d/docker-compose
+```
 
-## 2. Using docker-compose
+Test by typing:
+```
+docker-compose v<TAB>
+```
+
+The command should auto-complete to
+```
+docker-compose version
+```
+
+## 3. Using docker-compose
 
 To see what version you have installed
 ```
@@ -45,3 +70,12 @@ CPython version: 3.6.6
 OpenSSL version: OpenSSL 1.1.0f  25 May 2017
 ```
 
+
+
+
+## 4 Recuperate the example voting app
+
+For this lab I propose to use a new environment, an environment in the cloud called "Play with Docker"
+```
+git clone https://github.com/dockersamples/example-voting-app
+```
