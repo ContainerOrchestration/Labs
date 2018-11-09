@@ -8,7 +8,7 @@ The source code for '*Docker Compose*' is available here: [https://github.com/do
 
 For this lab I propose to use a new environment, an environment in the cloud called "Play with Docker".
 
-Open a browser window at https://play-with-docker.com.
+Open a browser window at https://labs.play-with-docker.com.
 
 Connect to your account.
 
@@ -115,7 +115,7 @@ For this lab we are interested in:
 
 #### 3.1.1 Docker-compose-simple
 
-This is the simplest architecture propose.
+This is the simplest architecture proposed.
 
 We have a micro-service implementation of a voting application with 5 elements.
 
@@ -123,6 +123,21 @@ In the diagram we can see that there are 2 front-end applications
 - the voting 
 ![](images/docker-compose-simple.JPG)
 
+
+Examine the file docker-compose-simple.yml to see what services are present and how they are configured.
+
+Experiment with some of the preparatory commands:
+```
+docker-compose -f docker-compose-simple.yml config
+docker-compose -f docker-compose-simple.yml pull
+docker-compose -f docker-compose-simple.yml build
+```
+**NOTE:** normally these are performed by the docker-compose run
+
+Now launch the application in detached mode with
+```
+docker-compose -f docker-compose-simple.yml up -d
+```
 
 #### 3.1.2 Docker-compose
 
