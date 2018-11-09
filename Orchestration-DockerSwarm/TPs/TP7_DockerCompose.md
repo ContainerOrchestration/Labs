@@ -115,6 +115,12 @@ For this lab we are interested in:
 
 #### 3.1.1 Docker-compose-simple
 
+This is the simplest architecture propose.
+
+We have a micro-service implementation of a voting application with 5 elements.
+
+In the diagram we can see that there are 2 front-end applications
+- the voting 
 ![](images/docker-compose-simple.JPG)
 
 
