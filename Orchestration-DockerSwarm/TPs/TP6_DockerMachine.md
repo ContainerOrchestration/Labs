@@ -4,6 +4,7 @@
 Docker-machine has official drivers for several hypervisors and Clouds (e.g. Hyoer-V, VirtualBox, Azure) and also some unofficial drivers (.e.g KVM).
 
 Problems were encountered using the KVM driver on CentOS https://github.com/dhiltgen/docker-machine-kvm so for this TP we will use
+- "Digital Ocean" Cloud from Kali Linux (which runs itself under VirtualBox)
 - VirtualBox on CentOS 7
 - Hyper-V on Windows 10
 
@@ -14,7 +15,12 @@ The source code for '*Docker Machine*' is available here: [https://github.com/do
 
 If using '*Docker Desktop*' for Windows you already have *docker-machine*' installed, you can skip to <a href="#2-using-docker-machine"> step 2</a> "*Using docker-machine*" below.
 
-## 1. Download docker-machine on CentOS 7
+## 1. Using docker-machine on Kali Linux
+
+Recuperate the digital ocean key from your instructor.
+
+Place it in ~/.digitaloceanrc 
+
 
 Go to the page [https://github.com/docker/machine/releases](https://github.com/docker/machine/releases) and download the latest Linux binary, e.g. [docker-machine-Linux-x86_64](https://github.com/docker/machine/releases/download/v0.15.0/docker-machine-Linux-x86_64).
 
@@ -29,7 +35,32 @@ sudo mv docker-machine /usr/local/bin
 sudo chmod +x /usr/local/bin/docker-machine
 ```
 
-## 1.0.1 Download docker-machine bash-completion on CentOS 7
+## 1.0.1 Download docker-machine bash-completion
+
+```bash
+sudo curl -L https://raw.githubusercontent.com/docker/machine/v0.14.0/contrib/completion/bash/docker-machine.bash -o /etc/bash_completion.d/docker-machine
+```
+
+bash completion should be available at the next login (or type 'bash' to go to a sub-shell).
+
+Now go to using Docker-machine in the sections below ...
+
+## 2. Download docker-machine on CentOS 7
+
+Go to the page [https://github.com/docker/machine/releases](https://github.com/docker/machine/releases) and download the latest Linux binary, e.g. [docker-machine-Linux-x86_64](https://github.com/docker/machine/releases/download/v0.15.0/docker-machine-Linux-x86_64).
+
+```
+wget -O docker-machine https://github.com/docker/machine/releases/download/v0.15.0/docker-machine-Linux-x86_64
+```
+
+Copy the binary to /usr/local/bin and set execution rights:
+
+```
+sudo mv docker-machine /usr/local/bin
+sudo chmod +x /usr/local/bin/docker-machine
+```
+
+## 2.0.1 Download docker-machine bash-completion on CentOS 7
 
 ```bash
 sudo curl -L https://raw.githubusercontent.com/docker/machine/v0.14.0/contrib/completion/bash/docker-machine.bash -o /etc/bash_completion.d/docker-machine
@@ -38,7 +69,7 @@ sudo curl -L https://raw.githubusercontent.com/docker/machine/v0.14.0/contrib/co
 bash completion should be available at the next login (or type 'bash' to go to a sub-shell).
 
 
-### 1.1 Install VirtualBox
+### 2.1 Install VirtualBox
 
 The VirtualBox driver is already included in the docker-machine binary.
 
@@ -46,7 +77,7 @@ However we need to install VirtualBox.
 
 Perform the following steps:
 
-#### 1.1.1 Download and install the VirtualBox rpm:
+#### 2.1.1 Download and install the VirtualBox rpm:
 
 ```bash
   wget https://download.virtualbox.org/virtualbox/5.2.20/VirtualBox-5.2-5.2.20_125813
@@ -54,7 +85,7 @@ _el7-1.x86_64.rpm
   sudo yum install VirtualBox-5.2-5.2.20_125813_el7-1.x86_64.rpm
 ```
 
-#### 1.1.2 Configure VirtualBox
+#### 2.1.2 Configure VirtualBox
 
 
 We likely need to install some packages.
@@ -86,7 +117,7 @@ Check that we can list VMs (should produce no output so far):
 
 If no errors were seen then we're ready to use docker-machine with VirtualBox
 
-## 2. Using docker-machine
+## 3. Using docker-machine
 
 To see what version you have installed
 ```
@@ -103,7 +134,7 @@ docker-machine version
     docker-machine version 0.15.0, build b48dc28d
 
 
-### 2.1 Creating a machine:
+### 3.1 Creating a machine:
 
 We can now create our first machine.
 
@@ -129,6 +160,24 @@ In case of errors, use the --debug option to debug:
 docker-machine --debug create -d hyperv --hyperv-virtual-switch ext test
 ```
 
+#### On Kali Linux (already in a VM):
+
+Source the digital ocean token (substitute correct PATH to file):
+```
+. ~/.digitaloceanrc
+```
+
+You should now have the token set in your shell.
+```
+env | grep TOKEN
+```
+
+You can now create docker-machines specifying '-d digitalocean' as for exaple:
+```
+docker-machine create -d digitalocean test1
+```
+
+From now on you can follow the rest of the instructions.
 
 #### On CentOS:
 
