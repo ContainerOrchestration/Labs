@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: jupyter
+  namespace: default
+  labels:
+    app: jupyter
+spec:
+  containers:
+    - name: jupyter
+      image: mjbright/kubelab
+      ports:
+      - containerPort: 80
+        protocol: TCP
+        name: http
+      volumeMounts:
+        - mountPath: /root/ContainerOrchestration
+          name: notebook-labs
+        - mountPath: /root/notebook-volume
+          name: notebook-volume
+        - mountPath: /root/.kube
+          name: kube-config
+  volumes:
+    - name: notebook-labs
+      gitRepo:
+        repository: "https://github.com/ContainerOrchestration/Labs.git"
+    - name: notebook-volume
+      gitRepo:
+        repository: "https://github.com/mjbright/kubernetes-client-python.git"
+    - name: kube-config
+      hostPath:
+        path: /home/core/.kube
+        
